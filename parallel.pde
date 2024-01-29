@@ -33,5 +33,4 @@ void drawLine(TableRow r){
   vertex(600, totalAgree);
   vertex(800, totalNet);
   endShape();
-  
 }
