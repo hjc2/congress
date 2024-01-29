@@ -13,18 +13,19 @@ void setup(){
   
   println(filteredTable.getRowCount());
   
-  filteredTable.print();
+  //filteredTable.print();
 }
 
 
 void draw(){
   
   background(255);
-  stroke(0);
+  stroke(3);
   strokeWeight(1);
   fill(0);
     
-
+  filteredTable.sort("agree_pct");
+  
   barChart(filteredTable);
   
 }
