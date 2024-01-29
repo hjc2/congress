@@ -3,12 +3,14 @@
 // THIS ASSIGNMENT WAS WRITTEN USING CHATGPT FOR SOME OF IT
 
 enum Status {
-  MOVING, YOUNG, OLD
+  SHRINK, EXPAND, YOUNG, OLD
 }
 
 Table table;
 Table youngTable;
 Table oldTable;
+
+float magnit = 1;
 
 Status status = Status.YOUNG;
 
@@ -36,16 +38,29 @@ void draw(){
     
   background(255);
   
-  if(status == Status.YOUNG){
-      barChart(youngTable);
-  }
-  if(status == Status.OLD){
-      barChart(oldTable);
+  //if(status == Status.YOUNG){
+  //    barChart(youngTable);
+  //}
+  //if(status == Status.OLD){
+  //    barChart(oldTable);
+  //}
+  
+  
+  
+  if(status == Status.EXPAND){
+    
+    shrink(youngTable);
+    magnit += 1;
+  } else {
+    barChart(youngTable);
   }
   
+  println(magnit);
 }
 
 void mouseClicked(){
-    status = status == Status.YOUNG ? Status.OLD : Status.YOUNG;
+    //status = status == Status.YOUNG ? Status.OLD : Status.YOUNG;
+    status = status == Status.EXPAND ? Status.SHRINK : Status.EXPAND;
+
 }
 // 102 - 116 vs 105 - 115
