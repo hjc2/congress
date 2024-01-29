@@ -25,6 +25,6 @@ void draw(){
   fill(0);
     
 
-  //barChart(filteredTable);
+  barChart(filteredTable);
   
 }
