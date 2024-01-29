@@ -5,7 +5,6 @@ void barChart(Table t){
   float k = t.getRowCount();
   
   float thickness = width / k;
-    
   float x = 0;
     
   for (TableRow row : t.rows()) {    

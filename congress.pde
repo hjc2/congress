@@ -12,7 +12,7 @@ void setup(){
   
   table = loadTable("congress.csv", "header");
   
-  filteredTable = filterTableByCongress(table, 0);
+  filteredTable = filterTableByCongress(table, 116);
   
   filteredTable.sort("agree_pct");
 
@@ -26,6 +26,6 @@ void draw(){
   
   background(255);
 
-  //barChart(filteredTable);
-  parallel(filteredTable);
+  barChart(filteredTable);
+  //parallel(filteredTable);
 }
