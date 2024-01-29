@@ -10,32 +10,22 @@ Table filterTableByCongress(Table inputTable, int year) {
 
   // Iterate through each row of the input table
   for (TableRow row : inputTable.rows()) {
-    // Check if the "congress" field has a value of 115
     if (row.getInt("congress") == year) {
-
       TableRow newRow = outputTable.addRow();      
-      for (int i = 0; i < inputTable.getColumnCount(); i++) {
         
-        //String columnName = inputTable.getColumnTitle(i);
-        //newRow.setFloat(columnName, row.getFloat(columnName));
-        
+      newRow.setString("chamber", row.getString("chamber"));
+      newRow.setString("bioguide", row.getString("bioguide"));
+      newRow.setString("last_name", row.getString("last_name"));
+      newRow.setString("state", row.getString("state"));
+      newRow.setString("district", row.getString("district"));
+      newRow.setString("party", row.getString("party"));
+     
+      newRow.setInt("votes", row.getInt("votes"));
+      newRow.setInt("congress", row.getInt("congress"));
+      
+      newRow.setFloat("agree_pct", row.getFloat("agree_pct"));
+      newRow.setFloat("net_trump_vote", row.getFloat("agree_pct"));
 
-        
-        
-        newRow.setString("chamber", row.getString("chamber"));
-        newRow.setString("bioguide", row.getString("bioguide"));
-        newRow.setString("last_name", row.getString("last_name"));
-        newRow.setString("state", row.getString("state"));
-        newRow.setString("district", row.getString("district"));
-        newRow.setString("party", row.getString("party"));
-       
-        newRow.setInt("votes", row.getInt("votes"));
-        newRow.setInt("congress", row.getInt("congress"));
-        
-        newRow.setFloat("agree_pct", row.getFloat("agree_pct"));
-        newRow.setFloat("net_trump_vote", row.getFloat("agree_pct"));
-
-      }
     }
   }
 
