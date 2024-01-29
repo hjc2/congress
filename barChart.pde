@@ -17,7 +17,7 @@ void barChart(Table t){
       
       stroke(0);
       strokeWeight(2);
-      choosePartyColor(party);
+      choosePartyFill(party);
       
       rect(x, height - voteHeight, thickness,  voteHeight);
 
@@ -26,20 +26,3 @@ void barChart(Table t){
   }
 }
       
-void choosePartyColor(String s){
-  
-  switch(s){
-    
-    case "D":
-    case "Democrat":
-       fill(30,30,255);
-       break;
-    case "R":
-    case "Republican":
-       fill(255,30,30);
-       break;
-    default:
-       fill(120);
-       break;
-  }
-}

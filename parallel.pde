@@ -7,23 +7,31 @@ void parallel(Table t){
     drawLine(row);
     
   }
-  // 
 }
 
 
 void drawLine(TableRow r){
   
   //Party, Total votes, agree pct, net trump vote.
-  float agree = map(float(r.getString("agree_pct")),0,1,height - 50, 50);
   
-  float votes = map(float(r.getString("votes")),0,186,height - 50, 50);
+  float votes = float(r.getString("votes"));
+  float agree = float(r.getString("agree_pct"));
+  float net = float(r.getString("net_trump_vote"));
   
+  String party = r.getString("party");
   
-  float net = map(float(r.getString("net_trump_vote")), -50, 50, 50, height);
+  float totalVotes = map(votes, 0, 200, height - 100, 100);
+  float totalAgree = map(agree, 0,1, height - 100, 100);
+  float totalNet = map(net, -50, 50, height - 100, 100);
+    
+  choosePartyStroke(party);
+  strokeWeight(1);
+  noFill();
   
-  
-  
-  line(100, agree, ((width - 200) / 3) + 100, votes);
-  line(((width - 200) / 3) + 100, votes, ((width - 200) / 3) * 2, net);
+  beginShape();
+  vertex(100, totalVotes);
+  vertex(600, totalAgree);
+  vertex(800, totalNet);
+  endShape();
   
 }

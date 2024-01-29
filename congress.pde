@@ -12,9 +12,9 @@ void setup(){
   
   table = loadTable("congress.csv", "header");
   
-  filteredTable = filterTableByCongress(table, 115);
+  filteredTable = filterTableByCongress(table, 0);
   
-  //filteredTable.sort("agree_pct");
+  filteredTable.sort("agree_pct");
 
   //println(filteredTable.getRowCount());
   

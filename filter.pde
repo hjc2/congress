@@ -8,7 +8,6 @@ Table filterTableByCongress(Table inputTable, int year) {
     outputTable.addColumn(columnName);
   }
 
-  // Iterate through each row of the input table
   for (TableRow row : inputTable.rows()) {
     if (row.getInt("congress") == year) {
       TableRow newRow = outputTable.addRow();      
@@ -24,8 +23,7 @@ Table filterTableByCongress(Table inputTable, int year) {
       newRow.setInt("congress", row.getInt("congress"));
       
       newRow.setFloat("agree_pct", row.getFloat("agree_pct"));
-      newRow.setFloat("net_trump_vote", row.getFloat("agree_pct"));
-
+      newRow.setFloat("net_trump_vote", row.getFloat("net_trump_vote"));
     }
   }
 
