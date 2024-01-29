@@ -1,6 +1,7 @@
 
 
 Table table;
+Table filteredTable;
 
 void setup(){
   
@@ -8,6 +9,11 @@ void setup(){
   
   table = loadTable("congress.csv", "header");
   
+  filteredTable = filterTableByCongress(table, 115);
+  
+  println(filteredTable.getRowCount());
+  
+  filteredTable.print();
 }
 
 
@@ -17,10 +23,8 @@ void draw(){
   stroke(0);
   strokeWeight(1);
   fill(0);
-  
-  int senate = 116;
-  
+    
 
-  barChart(table, 116);
+  //barChart(filteredTable);
   
 }
