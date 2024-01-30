@@ -13,7 +13,6 @@ void barChart(Table t) {
   float thickness = chartWidth / k;
   float x = 0;
 
-  rectMode(CORNERS);
   
   for (TableRow row : t.rows()) {
 
@@ -21,13 +20,13 @@ void barChart(Table t) {
     float vote = float(row.getString("agree_pct"));
     String party = row.getString("party");
 
-    float voteHeight =  map(vote, 0, 1, 0, chartHeight);
+    float voteHeight =  map(vote, 0, 1, 0, chartHeight - 100);
 
     stroke(0);
     strokeWeight(2);
     choosePartyFill(party);
   
-    //rect(x + 100, chartHeight - voteHeight + 200, thickness, voteHeight);
+    rect(x + 100, chartHeight - voteHeight, thickness, voteHeight);
     
     //rect(x + 100, chartHeight - voteHeight + 100, x + 100 + thickness, chartHeight);
 

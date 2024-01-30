@@ -18,6 +18,7 @@ Table filterTableByCongress(Table inputTable, int year) {
       newRow.setString("state", row.getString("state"));
       newRow.setString("district", row.getString("district"));
       newRow.setString("party", row.getString("party"));
+      newRow.setString("predicted_agree", row.getString("predicted_agree"));
      
       newRow.setInt("votes", row.getInt("votes"));
       newRow.setInt("congress", row.getInt("congress"));

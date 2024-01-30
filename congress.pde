@@ -14,6 +14,7 @@ enum Mode {
 Table table;
 Table youngTable;
 Table oldTable;
+DragCircle circ;
 
 float magnit = 1;
 
@@ -33,34 +34,25 @@ void setup(){
   
   youngTable.sort("agree_pct");
   oldTable.sort("agree_pct");
+  
+  circ = new DragCircle(this, width/2, height/2, 50);
+
 }
 
 
 void draw(){
-    
+  
+  
+
+
   background(255);
 
   
   parallel(oldTable);
-  //if(mode == Mode.BAR){
-  //    barChart(youngTable);
-  //} else {
-  //    //parallel(youngTable);
-  //    barChart(oldTable);
-  //}
-}
-
-void mouseClicked(){
-    //status = status == Status.YOUNG ? Status.OLD : Status.YOUNG;
-    //status = status == Status.EXPAND ? Status.SHRINK : Status.EXPAND;
   
-    mode = mode == Mode.BAR ? Mode.PAR : Mode.BAR;
-
-}
-// 102 - 116 vs 105 - 115
-
-
-void eventHandler(){
+  circ.update();
+  circ.display();
   
+  //barChart(youngTable);
   
 }
