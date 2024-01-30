@@ -35,7 +35,8 @@ void setup(){
   youngTable.sort("agree_pct");
   oldTable.sort("agree_pct");
   
-  circ = new DragCircle(this, width/2, height/2, 50);
+  //circ = new DragCircle(this, width/2, height/2, 50);
+  circ = new DragCircle(this, width/2, width / 2, 50);
 
 }
 
