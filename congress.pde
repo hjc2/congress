@@ -41,13 +41,13 @@ void draw(){
   background(255);
 
   
-  //parallel(oldTable);
-  if(mode == Mode.BAR){
-      barChart(youngTable);
-  } else {
-      //parallel(youngTable);
-      barChart(oldTable);
-  }
+  parallel(oldTable);
+  //if(mode == Mode.BAR){
+  //    barChart(youngTable);
+  //} else {
+  //    //parallel(youngTable);
+  //    barChart(oldTable);
+  //}
 }
 
 void mouseClicked(){
