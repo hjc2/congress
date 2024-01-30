@@ -6,6 +6,11 @@ enum Status {
   SHRINK, EXPAND, YOUNG, OLD
 }
 
+enum Mode {
+  BAR,
+  PAR
+}
+
 Table table;
 Table youngTable;
 Table oldTable;
@@ -13,6 +18,7 @@ Table oldTable;
 float magnit = 1;
 
 Status status = Status.YOUNG;
+Mode mode = Mode.BAR;
 
 int century = 116;
 
@@ -27,40 +33,34 @@ void setup(){
   
   youngTable.sort("agree_pct");
   oldTable.sort("agree_pct");
-  
-  //filteredTable.sort("agree_pct");
-
-  //println(filteredTable.getRowCount());
+ 
 }
 
 
 void draw(){
     
   background(255);
+
   
-  //if(status == Status.YOUNG){
-  //    barChart(youngTable);
-  //}
-  //if(status == Status.OLD){
-  //    barChart(oldTable);
-  //}
-  
-  
-  
-  if(status == Status.EXPAND){
-    
-    shrink(youngTable);
-    magnit += 1;
+  //parallel(oldTable);
+  if(mode == Mode.BAR){
+      barChart(youngTable);
   } else {
-    barChart(youngTable);
+      parallel(youngTable);
   }
-  
-  println(magnit);
 }
 
 void mouseClicked(){
     //status = status == Status.YOUNG ? Status.OLD : Status.YOUNG;
-    status = status == Status.EXPAND ? Status.SHRINK : Status.EXPAND;
+    //status = status == Status.EXPAND ? Status.SHRINK : Status.EXPAND;
+  
+    mode = mode == Mode.BAR ? Mode.PAR : Mode.BAR;
 
 }
 // 102 - 116 vs 105 - 115
+
+
+void eventHandler(){
+  
+  
+}
