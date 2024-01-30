@@ -33,7 +33,6 @@ void setup(){
   
   youngTable.sort("agree_pct");
   oldTable.sort("agree_pct");
- 
 }
 
 
@@ -46,7 +45,8 @@ void draw(){
   if(mode == Mode.BAR){
       barChart(youngTable);
   } else {
-      parallel(youngTable);
+      //parallel(youngTable);
+      barChart(oldTable);
   }
 }
 

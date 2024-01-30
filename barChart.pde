@@ -7,12 +7,14 @@ void barChart(Table t) {
   float k = t.getRowCount();
 
   int chartWidth = width - 200;
-  int chartHeight = height - 200;
+  int chartHeight = height - 100;
 
 
   float thickness = chartWidth / k;
   float x = 0;
 
+  rectMode(CORNERS);
+  
   for (TableRow row : t.rows()) {
 
 
@@ -24,12 +26,15 @@ void barChart(Table t) {
     stroke(0);
     strokeWeight(2);
     choosePartyFill(party);
-
-    rect(x + 100, chartHeight - voteHeight + 100, thickness, voteHeight);
-
+  
+    //rect(x + 100, chartHeight - voteHeight + 200, thickness, voteHeight);
+    
+    //rect(x + 100, chartHeight - voteHeight + 100, x + 100 + thickness, chartHeight);
 
     x += thickness;
   }
+  
+  legend(t);
 }
 
 void drawGrid() {
@@ -44,4 +49,10 @@ void drawGrid() {
 
     text((100 - (x * 20)), 40, h);
   }
+}
+
+void legend(Table t){
+  
+  //rectangle();
+  
 }
