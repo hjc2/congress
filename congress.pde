@@ -2,30 +2,44 @@
 
 // THIS ASSIGNMENT WAS WRITTEN USING CHATGPT FOR SOME OF IT
 
-
 Table table;
-Table filteredTable;
+Table youngTable;
+Table oldTable;
+Table youngDems;
+Table youngRep;
+
+//DragCircle c;
+
+BarChart bars;
 
 void setup(){
   
   size(1200,800);
   
   table = loadTable("congress.csv", "header");
+    
+  youngTable = filterTableByCongress(table, 115);
+  oldTable = filterTableByCongress(table, 116);
   
-  filteredTable = filterTableByCongress(table, 116);
+  youngTable.sort("agree_pct");
+  oldTable.sort("agree_pct");
   
-  filteredTable.sort("agree_pct");
+  youngDems = filterTableByParty(youngTable, "D");
+  youngRep = filterTableByParty(youngTable, "R");
+  
+  
+  bars = new BarChart(youngDems);
 
-  //println(filteredTable.getRowCount());
-  
-  //filteredTable.print();
 }
 
 
 void draw(){
-  
   background(255);
 
-  barChart(filteredTable);
-  //parallel(filteredTable);
+  
+  //bars = new BarChart(youngDems);
+  
+  
+  bars.draw();
+  
 }
