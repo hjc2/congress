@@ -6,6 +6,8 @@ Table table;
 Table youngTable;
 Table oldTable;
 
+DragCircle c;
+
 BarChart bars;
 
 void setup(){
@@ -19,8 +21,8 @@ void setup(){
   
   youngTable.sort("agree_pct");
   oldTable.sort("agree_pct");
-  
-  bars.xPad = BarChart(this.p, table);
+    
+  bars = new BarChart(oldTable);
   
   //println(bars.xPad);
   //bars = BarClass(oldTable);
