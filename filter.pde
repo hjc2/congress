@@ -38,13 +38,13 @@ Table filterTableByParty(Table inputTable, String party){
   String shor = "";
   String lon = "";
   
-  if(party == "Republican" || party == "R"){
+  if(party.equals("Republican") || party.equals("R")){
     shor = "R";
-    lon = "Republican";
-  } else if(party == "Republican" || party == "R"){
+    lon = "Republican  ";
+  } else if(party.equals("Democrat") || party.equals("D")){
     shor = "D";
     lon = "Democrat";
-  } else if(party == "Independent" || party == "I"){
+  } else if(party.equals("Independent") || party.equals("I")){
     shor = "I";
     lon = "Independent";
   }
@@ -56,7 +56,9 @@ Table filterTableByParty(Table inputTable, String party){
 
   for (TableRow row : inputTable.rows()) {
     
-    if (row.getString("party") == lon || row.getString("party") == shor) {
+    String p = row.getString("party");
+    
+    if (p.equals(lon) || p.equals(shor)) {
       TableRow newRow = outputTable.addRow();      
         
       newRow.setString("chamber", row.getString("chamber"));

@@ -6,6 +6,7 @@ Table table;
 Table youngTable;
 Table oldTable;
 Table youngDems;
+Table youngRep;
 
 //DragCircle c;
 
@@ -24,14 +25,10 @@ void setup(){
   oldTable.sort("agree_pct");
   
   youngDems = filterTableByParty(youngTable, "D");
+  youngRep = filterTableByParty(youngTable, "R");
   
   
-    
   bars = new BarChart(youngDems);
-  
-  //println(bars.xPad);
-  //bars = BarClass(oldTable);
-
 
 }
 
@@ -40,7 +37,7 @@ void draw(){
   background(255);
 
   
-  bars = new BarChart(oldTable);
+  //bars = new BarChart(youngDems);
   
   
   bars.draw();
