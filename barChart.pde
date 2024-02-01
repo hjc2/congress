@@ -85,27 +85,35 @@ public class BarChart {
     }
   }
   void selectBar(){
-    
-    
     if(mouseX > xPad && mouseX < chartWidth + xPad){
-            
       int place = (int)map(mouseX, xPad, chartWidth + xPad, 0, bars);
+      TableRow row = table.getRow(place);
       
-      TableRow row = table.getRow(selected);
-      
-      float vote = float(row.getString("agree_pct"));
-      float voteHeight = map(vote, 0, 1, chartHeight + yPad, yPad);
-      
+      float voteHeight = map(float(row.getString("agree_pct")), 0, 1, chartHeight + yPad, yPad);
+    
       if(mouseY > voteHeight && mouseY < chartHeight + yPad){
-        fill(0);
-        textSize(30);
-        
-        String name = row.getString("last_name");
-        
-        
-        text(name,0, 40);
-
+        selected = place;
+        displayInfo(place);
+      } else {
+        selected = -1;
       }
+    } else {
+      selected = -1;
     }
   }
+  
+  void displayInfo(int k){
+    
+    fill(0);
+    textSize(30);
+    
+    TableRow row = table.getRow(k);
+    
+    String name = row.getString("last_name");
+    
+    
+    text(name, 0, 40);
+    
+  }
+
 }
