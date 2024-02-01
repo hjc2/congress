@@ -25,12 +25,31 @@ void barChart(Table t) {
     stroke(0);
     strokeWeight(2);
     choosePartyFill(party);
+    
+    rectMode(CORNER);
   
     rect(x + 100, chartHeight - voteHeight, thickness, voteHeight);
     
-    //rect(x + 100, chartHeight - voteHeight + 100, x + 100 + thickness, chartHeight);
-
     x += thickness;
+  }
+  
+  
+  if(mouseX > 100 && mouseX < chartWidth + 100){
+    
+    TableRow row = t.getRow(int((mouseX - 100) / thickness));
+    float vote = float(row.getString("agree_pct"));
+    
+    float voteHeight =  map(vote, 0, 1, 0, chartHeight - 100);
+
+    if(mouseY >  chartHeight - voteHeight && mouseY < voteHeight){
+      
+        rectMode(CORNERS);
+    
+      rect(40,40,80,80);
+      
+    }
+
+    
   }
   
   legend(t);

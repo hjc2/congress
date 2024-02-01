@@ -35,8 +35,8 @@ void setup(){
   youngTable.sort("agree_pct");
   oldTable.sort("agree_pct");
   
-  //circ = new DragCircle(this, width/2, height/2, 50);
-  circ = new DragCircle(this, width/2, width / 2, 50);
+  ////circ = new DragCircle(this, width/2, height/2, 50);
+  //circ = new DragCircle(this, width/2, width / 2, 50);
 
 }
 
@@ -49,10 +49,10 @@ void draw(){
   background(255);
 
   
-  parallel(oldTable);
+  barChart(oldTable);
   
-  circ.update();
-  circ.display();
+  //circ.update();
+  //circ.display();
   
   //barChart(youngTable);
   
