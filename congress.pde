@@ -2,26 +2,15 @@
 
 // THIS ASSIGNMENT WAS WRITTEN USING CHATGPT FOR SOME OF IT
 
-enum Status {
-  SHRINK, EXPAND, YOUNG, OLD
-}
-
-enum Mode {
-  BAR,
-  PAR
-}
-
 Table table;
 Table youngTable;
 Table oldTable;
-DragCircle circ;
+Table youngDems;
+Table youngRep;
 
-float magnit = 1;
+//DragCircle c;
 
-Status status = Status.YOUNG;
-Mode mode = Mode.BAR;
-
-int century = 116;
+BarChart bars;
 
 void setup(){
   
@@ -35,25 +24,22 @@ void setup(){
   youngTable.sort("agree_pct");
   oldTable.sort("agree_pct");
   
-  ////circ = new DragCircle(this, width/2, height/2, 50);
-  //circ = new DragCircle(this, width/2, width / 2, 50);
+  youngDems = filterTableByParty(youngTable, "D");
+  youngRep = filterTableByParty(youngTable, "R");
+  
+  
+  bars = new BarChart(youngDems);
 
 }
 
 
 void draw(){
-  
-  
-
-
   background(255);
 
   
-  barChart(oldTable);
+  //bars = new BarChart(youngDems);
   
-  //circ.update();
-  //circ.display();
   
-  //barChart(youngTable);
+  bars.draw();
   
 }
