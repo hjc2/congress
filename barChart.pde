@@ -24,19 +24,14 @@ public class BarChart {
     bars = table.getRowCount();
   }
   
-  
+  // main draw function for bar chart!
   void draw(){
     drawGrid();
     drawBars();
-    selectBar();
-    
-    strokeWeight(5);
-    stroke(255,0,255);
-    point(xPad,yPad + chartHeight);
-    point(xPad + chartWidth,yPad + chartHeight);
-
+    selected = selectBar();
   }
   
+  // draws the grid the bar chart is on
   void drawGrid(){
     stroke(0);
     strokeWeight(2);
@@ -57,6 +52,7 @@ public class BarChart {
     }
   }
   
+  // draws the bars
   void drawBars(){
     
     rectMode(CORNERS);
@@ -84,7 +80,9 @@ public class BarChart {
         x += 1;
     }
   }
-  void selectBar(){
+  
+  // will pick a bar and return the "selected bar"
+  int selectBar(){
     if(mouseX > xPad && mouseX < chartWidth + xPad){
       int place = (int)map(mouseX, xPad, chartWidth + xPad, 0, bars);
       TableRow row = table.getRow(place);
@@ -92,14 +90,12 @@ public class BarChart {
       float voteHeight = map(float(row.getString("agree_pct")), 0, 1, chartHeight + yPad, yPad);
     
       if(mouseY > voteHeight && mouseY < chartHeight + yPad){
-        selected = place;
         displayInfo(place);
-      } else {
-        selected = -1;
+        
+        return(place);
       }
-    } else {
-      selected = -1;
     }
+    return(-1);
   }
   
   void displayInfo(int k){
@@ -110,10 +106,12 @@ public class BarChart {
     TableRow row = table.getRow(k);
     
     String name = row.getString("last_name");
-    
+
+    float vote = float(row.getString("agree_pct"));
     
     text(name, 0, 40);
+    String b = String.format("%.2f",vote * 100);
     
+    text(b + "%", mouseX - 5, mouseY - 5);
   }
-
 }

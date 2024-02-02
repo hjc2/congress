@@ -7,8 +7,8 @@ Table youngTable;
 Table oldTable;
 Table youngDems;
 Table youngRep;
+Table oldRep;
 
-//DragCircle c;
 
 BarChart bars;
 
@@ -27,6 +27,8 @@ void setup(){
   youngDems = filterTableByParty(youngTable, "D");
   youngRep = filterTableByParty(youngTable, "R");
   
+  oldRep = filterTableByParty(oldTable, "R");
+  
   
   bars = new BarChart(youngDems);
 
@@ -34,11 +36,7 @@ void setup(){
 
 
 void draw(){
-  background(255);
-
-  
-  //bars = new BarChart(youngDems);
-  
+  background(255);  
   
   bars.draw();
   

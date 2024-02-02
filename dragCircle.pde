@@ -26,19 +26,18 @@ public class DragCircle {
     }
 
     public void update() {
-        if (mousePressed) {
-          if(dragging){
-            //this.x = mouseX;
-            this.y = mouseY;
-          } 
-          
-         if(isMouseInside()){
-            dragging = true;
-            
-            //this.x = mouseX;
-            this.y = mouseY;
-        }
+      if (mousePressed) {
+        if(dragging){
+          //this.x = mouseX;
+          this.y = mouseY;
+        } 
         
+       if(isMouseInside()){
+          dragging = true;
+          
+          //this.x = mouseX;
+          this.y = mouseY;
+      }
         
     } else {
       dragging = false;
