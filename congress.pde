@@ -22,6 +22,10 @@ int barModeP;
 int barModeY;
 
 
+DragRect dr;
+
+
+
 void setup(){
   
   barModeY = 1;
@@ -47,6 +51,8 @@ void setup(){
   
  // ---- 
  
+   dr = new DragRect(this, 400, 400, 600, 600); // Create a DragRect object
+
  
  
 }
@@ -56,10 +62,14 @@ void setup(){
 void draw(){
   background(255);  
     
-  barInputs();
+  //barInputs();
 
-  bars.draw();
+  //bars.draw();
+  
   
   //parallel(youngTable);
+  dr.update();
+
+  dr.display();
   
 }
