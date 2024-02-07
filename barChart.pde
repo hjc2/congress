@@ -202,16 +202,17 @@ public class BarChart {
       stroke(0);
     
     strokeWeight(3);
+    
+    fill(255,255,255);
+    circle(115, height - 50, 15);
+    circle(115, height - 75, 15);
+
+    //strokeWeight(2);
+    fill(0);
     if(congress == 116){
-      fill(40,40,40);
-      circle(115, height - 50, 15);
-      fill(255,255,255);
-      circle(115, height - 75, 15);
+      circle(115, height - 50, 4);
     } else {
-      fill(255,255,255);
-      circle(115, height - 50, 15);
-      fill(40,40,40);
-      circle(115, height - 75, 15);   
+      circle(115, height - 75, 4);
     }
     strokeWeight(3);
     
