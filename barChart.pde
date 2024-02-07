@@ -233,6 +233,9 @@ public class BarChart {
     choosePartyFill("R");
     circle(360, height - 62, 20);
     
+    fill(0);
+    circle((barModeP - 1) * 30 + 300, height - 62, 5);
+    
     textSize(20);
     fill(0);
     stroke(0);
@@ -255,20 +258,19 @@ public class BarChart {
     return(0);
   }
   
-  //int pb(){
-  //  if(!mousePressed){
-  //    return(0);
-  //  }
+  int pb(){
+    if(!mousePressed){
+      return(0);
+    }
         
-  //  if(mousePressed && distance(mouseX, mouseY, 300, height - 62) < 20){
-       
-  //    return(1);
-  //  } else if(mousePressed && distance(mouseX, mouseY, 330, height - 62) < 20){
-      
-  //    return(2);
-  //  }
-    
-  //  return(0);
-  //}
+    if(mousePressed && distance(mouseX, mouseY, 300, height - 62) < 20){
+      return(1);
+    } else if(mousePressed && distance(mouseX, mouseY, 330, height - 62) < 20){
+      return(2);
+    } else if(mousePressed && distance(mouseX, mouseY, 360, height - 62) < 20){
+      return(3);
+    }
+    return(0);
+  }
   
 }
