@@ -30,7 +30,7 @@ void setup(){
   oldRep = filterTableByParty(oldTable, "R");
   
   
-  bars = new BarChart(youngRep);
+  bars = new BarChart(youngDems);
 
 }
 

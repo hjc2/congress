@@ -79,11 +79,15 @@ public class BarChart {
         float voteHeight =  map(vote, 0, 1, 0, chartHeight);
 
         choosePartyFill(party);
-        
-        if(x == selected) fill(20,20,20);
-        
+               
         // bottom left, top right
         rect(x * thickness + xPad, chartHeight + yPad, (x+1) * thickness + xPad, (chartHeight - voteHeight) + yPad);
+        
+        
+        if(x == selected){
+          fill(20,20,20, 150);
+          rect(x * thickness + xPad, chartHeight + yPad, (x+1) * thickness + xPad, (chartHeight - voteHeight) + yPad);
+        }
         x += 1;
     }
   }
@@ -146,8 +150,6 @@ public class BarChart {
   }
   
   void title(){
-  
-  
     stroke(0);
     fill(0);
     
@@ -167,12 +169,17 @@ public class BarChart {
       rectMode(CORNER);
 
       choosePartyFill("D");
+      rect(width - xPad - 100, height - 85, 15, 15);
+      choosePartyFill("R");
+      rect(width - xPad - 100, height - 60, 15, 15);
+      choosePartyFill("I");
+      rect(width - xPad - 100, height - 35, 15, 15);
+
+      fill(0);
+      stroke(0);
+      text("democrats", width - 100, height - 50);
       
-      rect(width / 3 * 2, height - 60, 20,20);
-      text("democrat", width - 100, height - 50);
       
-      
-      
-    
+   
   }
 }
