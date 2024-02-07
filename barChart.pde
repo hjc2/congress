@@ -121,6 +121,8 @@ public class BarChart {
 
     float vote = float(row.getString("agree_pct"));
     float voteHeight = map(float(row.getString("agree_pct")), 0, 1, chartHeight + yPad, yPad);
+    
+    String st = row.getString("state");
 
 
     String b = String.format("%.2f",vote * 100);
@@ -139,7 +141,7 @@ public class BarChart {
     fill(0);
     textSize(25);
     
-    text("Senator " + name, 15, 150);
+    text("Senator " + name + ", " + st, 15, 150);
     
     stroke(0);
     fill(0);
