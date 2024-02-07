@@ -245,28 +245,30 @@ public class BarChart {
     
     if(mousePressed && distance(mouseX, mouseY, 115, height - 75) < 15){
       congress = 115;
-
       return(1);
     }
     
     if(mousePressed && distance(mouseX, mouseY, 115, height - 50) < 15){
       congress = 116;
       return(2);
-      
     }
-        
     return(0);
   }
   
-  int pb(){
-    if(!mousePressed){
-      return(0);
-    }
+  //int pb(){
+  //  if(!mousePressed){
+  //    return(0);
+  //  }
+        
+  //  if(mousePressed && distance(mouseX, mouseY, 300, height - 62) < 20){
+       
+  //    return(1);
+  //  } else if(mousePressed && distance(mouseX, mouseY, 330, height - 62) < 20){
+      
+  //    return(2);
+  //  }
     
-    return(0);
-    
-    
-    
-  }
+  //  return(0);
+  //}
   
 }

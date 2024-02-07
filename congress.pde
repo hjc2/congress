@@ -18,11 +18,13 @@ BarChart bars;
 int party;
 int year;
 
-int barMode;
+int barModeP;
+int barModeY;
 
 void setup(){
   
-  barMode = 1;
+  barModeY = 1;
+  barModeP = 2;
   
   size(1200,800);
   
@@ -52,8 +54,4 @@ void draw(){
   
   barInputs();
   
-  //line(width / 2, 0, width / 2, height);
-  //  line(width / 2, 0, width / 2 + 25, height);
-  //  line(width / 2, 0, width / 2 - 25, height);
-
 }
