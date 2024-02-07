@@ -21,6 +21,7 @@ int year;
 int barModeP;
 int barModeY;
 
+
 void setup(){
   
   barModeY = 1;
@@ -30,28 +31,33 @@ void setup(){
   
   table = loadTable("congress.csv", "header");
     
-  youngTable = filterTableByCongress(table, 115);
-  oldTable = filterTableByCongress(table, 116);
-  
-  youngTable.sort("agree_pct");
+  oldTable = filterTableByCongress(table, 115);
+  youngTable = filterTableByCongress(table, 116);
+
   oldTable.sort("agree_pct");
-  
+  youngTable.sort("agree_pct");
+
   youngDems = filterTableByParty(youngTable, "D");
   youngRep = filterTableByParty(youngTable, "R");
   
   oldRep = filterTableByParty(oldTable, "R");
   oldDems =  filterTableByParty(oldTable, "D");
     
-  bars = new BarChart(youngTable);
-
+  barToData(barModeY, barModeP);
 }
-
 
 void draw(){
   background(255);  
     
-  bars.draw();
-  
   barInputs();
-  
+
+  bars.draw();
+ 
+
 }
+
+// 115 has the double 100%ers.
+
+// 116th has none
+
+// surefire way of telling the difference.

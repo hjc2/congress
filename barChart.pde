@@ -9,11 +9,10 @@ public class BarChart {
   int chartWidth;
   int chartHeight;
   
-  int bars;
+  int nums;
   
   int selected;
   
-  int congress;
   //int party
   
   public BarChart(Table t){
@@ -23,10 +22,8 @@ public class BarChart {
     chartWidth = width - (2 * xPad);
     chartHeight = height - (2 * yPad);
     table = t;
-    
-    congress = 115; // or 116, which is old
-    
-    bars = table.getRowCount();
+        
+    nums = table.getRowCount();
   }
   
   // main draw function for bar chart!
@@ -73,7 +70,7 @@ public class BarChart {
 
     float x = 0;
     
-    float thickness = float(chartWidth) / float(bars);
+    float thickness = float(chartWidth) / float(nums);
     
     stroke(0);
     strokeWeight(2);
@@ -102,7 +99,8 @@ public class BarChart {
   // will pick a bar and return the "selected bar"
   int selectBar(){
     if(mouseX > xPad && mouseX < chartWidth + xPad){
-      int place = (int)map(mouseX, xPad, chartWidth + xPad, 0, bars);
+      int place = (int)map(mouseX, xPad, chartWidth + xPad, 0, nums);
+      
       TableRow row = table.getRow(place);
       
       float voteHeight = map(float(row.getString("agree_pct")), 0, 1, chartHeight + yPad, yPad);
@@ -124,7 +122,7 @@ public class BarChart {
     
     String name = row.getString("last_name");
     
-    float thickness = float(chartWidth) / float(bars);
+    float thickness = float(chartWidth) / float(nums);
 
     float vote = float(row.getString("agree_pct"));
     float voteHeight = map(float(row.getString("agree_pct")), 0, 1, chartHeight + yPad, yPad);
@@ -169,7 +167,8 @@ public class BarChart {
     textSize(25);
     text("Senators", width / 2 - 50, height - 55);
     textSize(15);
-    text(str(congress) + "'th Senate", width / 2 - 45, height - 35);
+    
+    text(str(year) + "'th Senate", width / 2 - 45, height - 35);
       
     
   }
@@ -191,9 +190,6 @@ public class BarChart {
       text("democrats", width - 195, height - 70);
       text("republicans", width - 195, height - 45);
       text("independents", width - 195, height - 20);
-
-      
-   
   }
   
   void drawButtons(){
@@ -209,12 +205,14 @@ public class BarChart {
 
     //strokeWeight(2);
     fill(0);
-    if(congress == 116){
+    if(year == 116){
       circle(115, height - 50, 4);
     } else {
       circle(115, height - 75, 4);
     }
     strokeWeight(3);
+    
+    
     
     fill(0);
     stroke(0);
@@ -241,37 +239,6 @@ public class BarChart {
     fill(0);
     stroke(0);
     text("party", 310, height - 30);
-
-    
-  }
-  
-  int buttons(){
-    
-    if(mousePressed && distance(mouseX, mouseY, 115, height - 75) < 15){
-      congress = 115;
-      return(1);
-    }
-    
-    if(mousePressed && distance(mouseX, mouseY, 115, height - 50) < 15){
-      congress = 116;
-      return(2);
-    }
-    return(0);
-  }
-  
-  int pb(){
-    if(!mousePressed){
-      return(0);
-    }
-        
-    if(mousePressed && distance(mouseX, mouseY, 300, height - 62) < 20){
-      return(1);
-    } else if(mousePressed && distance(mouseX, mouseY, 330, height - 62) < 20){
-      return(2);
-    } else if(mousePressed && distance(mouseX, mouseY, 360, height - 62) < 20){
-      return(3);
-    }
-    return(0);
   }
   
 }

@@ -1,28 +1,62 @@
 
 
+int buttons(){
+  if(mousePressed){
+    if(distance(mouseX, mouseY, 115, height - 75) < 15){
+      year = 115;
+      return(1);
+    }
+  
+    if(distance(mouseX, mouseY, 115, height - 50) < 15){
+      year = 116;
+      return(2);
+    }
+  }
+  return(0);
+}
+
+int pb(){
+  if(mousePressed){
+    if(distance(mouseX, mouseY, 300, height - 62) < 20){
+      return(1);
+    } else if(distance(mouseX, mouseY, 330, height - 62) < 20){
+      return(2);
+    } else if(distance(mouseX, mouseY, 360, height - 62) < 20){
+      return(3);
+    }
+  }
+  
+  return(0);
+  
+}
+  
+  
 void barInputs(){
   
-   int tmp = bars.buttons();
+   int tmp = buttons();
    
-   int rmp = bars.pb();
+   int rmp = pb();
    
    boolean flag = false;
    
    if(tmp != barModeY && tmp != 0){  
      barModeY = tmp;
-     flag = true;
+    barToData(barModeY, barModeP);
    }
    if(rmp != barModeP && rmp != 0){
      barModeP = rmp;
-     flag = true;
+    barToData(barModeY, barModeP);
    }
    
-   if(flag){barToData(barModeY, barModeP);}
+   
 }
 
 
 
 void barToData(int x, int y){
+  
+  println("---");
+  println(str(x) + "___" + str(y));
   
   if(x == 1 && y == 2){ bars = new BarChart(oldTable); return;}
   if(x == 2 && y == 2){ bars = new BarChart(youngTable); return;}
@@ -32,6 +66,7 @@ void barToData(int x, int y){
   
   if(x == 1 && y == 3){ bars = new BarChart(oldRep); return;}
   if(x == 2 && y == 3){ bars = new BarChart(youngRep); return;}
+  
   
 }
 
