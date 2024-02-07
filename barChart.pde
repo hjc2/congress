@@ -13,6 +13,9 @@ public class BarChart {
   
   int selected;
   
+  int congress;
+  //int party
+  
   public BarChart(Table t){
     
     xPad = 120;
@@ -20,6 +23,8 @@ public class BarChart {
     chartWidth = width - (2 * xPad);
     chartHeight = height - (2 * yPad);
     table = t;
+    
+    congress = 115; // or 116, which is old
     
     bars = table.getRowCount();
   }
@@ -36,6 +41,8 @@ public class BarChart {
     // this is 100% intentional as I want the bar to be able to cover part of the text.
     
     // it's too late for me to squeeze everything in, I just want it to look ok. I think this is the only time it should effect is youngRep @100%.
+    
+    drawButtons();
   }
   
   // draws the grid the bar chart is on
@@ -179,9 +186,40 @@ public class BarChart {
 
       fill(0);
       stroke(0);
-      text("democrats", width - 100, height - 50);
-      
+      text("democrats", width - 195, height - 70);
+      text("republicans", width - 195, height - 45);
+      text("independents", width - 195, height - 20);
+
       
    
   }
+  
+  void drawButtons(){
+    
+      fill(40,40,40);
+      stroke(0);
+      
+    circle(50, height - 50, 15);
+    circle(50, height - 75, 15);
+
+    
+  }
+  
+  int buttons(){
+    
+    if(mousePressed && distance(mouseX, mouseY, 50, height - 50) < 15){
+      congress = 115;
+
+      return(1);
+    }
+    
+    if(mousePressed && distance(mouseX, mouseY, 50, height - 75) < 15){
+      congress = 116;
+      return(2);
+      
+    }
+        
+    return(0);
+  }
+  
 }
