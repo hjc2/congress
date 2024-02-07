@@ -55,9 +55,3 @@ void draw(){
  
 
 }
-
-// 115 has the double 100%ers.
-
-// 116th has none
-
-// surefire way of telling the difference.
