@@ -54,9 +54,7 @@ void barInputs(){
 
 
 void barToData(int x, int y){
-  
-  println("---");
-  println(str(x) + "___" + str(y));
+ 
   
   if(x == 1 && y == 2){ bars = new BarChart(oldTable); return;}
   if(x == 2 && y == 2){ bars = new BarChart(youngTable); return;}

@@ -23,6 +23,7 @@ int barModeY;
 
 
 DragRect dr;
+ParChart pars;
 
 
 
@@ -53,7 +54,8 @@ void setup(){
  
    dr = new DragRect(this, 400, 400, 600, 600); // Create a DragRect object
 
- 
+   pars = new ParChart(oldTable);
+
  
 }
 
@@ -67,9 +69,11 @@ void draw(){
   //bars.draw();
   
   
-  //parallel(youngTable);
-  dr.update();
+  ////parallel(youngTable);
+  //dr.update();
 
-  dr.display();
+  //dr.display();
+  
+  
   
 }
