@@ -66,11 +66,4 @@ void gridLines() {
     text(titles[i], xCoords[i] - 40, 80);
   }
   
-  
-  
 }
-
-
-// highlight line.
-
-// 

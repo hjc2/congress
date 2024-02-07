@@ -1,6 +1,5 @@
 
 
-
 public class BarChart {
   Table table;
   
@@ -240,5 +239,4 @@ public class BarChart {
     stroke(0);
     text("party", 310, height - 30);
   }
-  
 }

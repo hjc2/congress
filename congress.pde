@@ -44,7 +44,14 @@ void setup(){
   oldDems =  filterTableByParty(oldTable, "D");
     
   barToData(barModeY, barModeP);
+  
+ // ---- 
+ 
+ 
+ 
 }
+
+
 
 void draw(){
   background(255);  
@@ -52,5 +59,7 @@ void draw(){
   barInputs();
 
   bars.draw();
-
+  
+  //parallel(youngTable);
+  
 }
