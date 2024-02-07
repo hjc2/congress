@@ -28,7 +28,14 @@ public class BarChart {
   void draw(){
     drawGrid();
     drawBars();
+    
+    title();
+    legend();
+    
     selected = selectBar();
+    // this is 100% intentional as I want the bar to be able to cover part of the text.
+    
+    // it's too late for me to squeeze everything in, I just want it to look ok. I think this is the only time it should effect is youngRep @100%.
   }
   
   // draws the grid the bar chart is on
@@ -100,18 +107,72 @@ public class BarChart {
   
   void displayInfo(int k){
     
-    fill(0);
-    textSize(30);
+
     
     TableRow row = table.getRow(k);
     
     String name = row.getString("last_name");
+    
+    float thickness = float(chartWidth) / float(bars);
 
     float vote = float(row.getString("agree_pct"));
-    
-    text(name, 0, 40);
+    float voteHeight = map(float(row.getString("agree_pct")), 0, 1, chartHeight + yPad, yPad);
+
+
     String b = String.format("%.2f",vote * 100);
     
-    text(b + "%", mouseX - 5, mouseY - 5);
+    float xv = xPad + thickness * k - 45;
+        
+    
+    // makes white box behind text to destroy grid lines
+    noStroke();
+    rectMode(CORNERS);
+    //stroke(255);
+    fill(255);
+    rect(xv - 10 + 5, voteHeight - 26, xv + 60, voteHeight - 5);
+    
+   stroke(0);
+    fill(0);
+    textSize(25);
+    
+    text("Senator " + name, 15, 150);
+    
+    stroke(0);
+    fill(0);
+    textSize(20); 
+    text(b + "%", xv, voteHeight - 10);
+    
+    
+  }
+  
+  void title(){
+  
+  
+    stroke(0);
+    fill(0);
+    
+    textSize(30);
+    
+    text("Senate Voting Alignment with Trump by Senator and Party Affiliation", 160, 80);
+    
+    textSize(25);
+    text("Senators", width / 2 - 60, height - 55);
+      
+    
+  }
+  
+  void legend(){
+    
+      textSize(20);
+      rectMode(CORNER);
+
+      choosePartyFill("D");
+      
+      rect(width / 3 * 2, height - 60, 20,20);
+      text("democrat", width - 100, height - 50);
+      
+      
+      
+    
   }
 }
