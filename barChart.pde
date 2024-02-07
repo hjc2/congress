@@ -167,7 +167,9 @@ public class BarChart {
     text("Senate Voting Alignment with Trump by Senator and Party Affiliation", 160, 80);
     
     textSize(25);
-    text("Senators", width / 2 - 60, height - 55);
+    text("Senators", width / 2 - 50, height - 55);
+    textSize(15);
+    text(str(congress) + "'th Senate", width / 2 - 45, height - 35);
       
     
   }
@@ -198,28 +200,73 @@ public class BarChart {
     
       fill(40,40,40);
       stroke(0);
-      
-    circle(50, height - 50, 15);
-    circle(50, height - 75, 15);
+    
+    strokeWeight(3);
+    if(congress == 116){
+      fill(40,40,40);
+      circle(115, height - 50, 15);
+      fill(255,255,255);
+      circle(115, height - 75, 15);
+    } else {
+      fill(255,255,255);
+      circle(115, height - 50, 15);
+      fill(40,40,40);
+      circle(115, height - 75, 15);   
+    }
+    strokeWeight(3);
+    
+    fill(0);
+    stroke(0);
+    textSize(20);
+    text("115", 130, height - 70);
+    text("116", 130, height - 45);
+
+    
+    textSize(20);
+    text("congress", 100, height - 15);
+    
+    
+    choosePartyFill("D");
+    circle(300, height - 62, 20);
+    fill(220,220,220);
+    circle(330, height - 62, 20);
+    choosePartyFill("R");
+    circle(360, height - 62, 20);
+    
+    textSize(20);
+    fill(0);
+    stroke(0);
+    text("party", 310, height - 30);
 
     
   }
   
   int buttons(){
     
-    if(mousePressed && distance(mouseX, mouseY, 50, height - 50) < 15){
+    if(mousePressed && distance(mouseX, mouseY, 115, height - 75) < 15){
       congress = 115;
 
       return(1);
     }
     
-    if(mousePressed && distance(mouseX, mouseY, 50, height - 75) < 15){
+    if(mousePressed && distance(mouseX, mouseY, 115, height - 50) < 15){
       congress = 116;
       return(2);
       
     }
         
     return(0);
+  }
+  
+  int pb(){
+    if(!mousePressed){
+      return(0);
+    }
+    
+    return(0);
+    
+    
+    
   }
   
 }
