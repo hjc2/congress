@@ -52,6 +52,5 @@ void draw(){
   barInputs();
 
   bars.draw();
- 
 
 }

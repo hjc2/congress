@@ -2,12 +2,12 @@
 
 int buttons(){
   if(mousePressed){
-    if(distance(mouseX, mouseY, 115, height - 75) < 15){
+    if(dist(mouseX, mouseY, 115, height - 75) < 15){
       year = 115;
       return(1);
     }
   
-    if(distance(mouseX, mouseY, 115, height - 50) < 15){
+    if(dist(mouseX, mouseY, 115, height - 50) < 15){
       year = 116;
       return(2);
     }
@@ -17,11 +17,11 @@ int buttons(){
 
 int pb(){
   if(mousePressed){
-    if(distance(mouseX, mouseY, 300, height - 62) < 20){
+    if(dist(mouseX, mouseY, 300, height - 62) < 20){
       return(1);
-    } else if(distance(mouseX, mouseY, 330, height - 62) < 20){
+    } else if(dist(mouseX, mouseY, 330, height - 62) < 20){
       return(2);
-    } else if(distance(mouseX, mouseY, 360, height - 62) < 20){
+    } else if(dist(mouseX, mouseY, 360, height - 62) < 20){
       return(3);
     }
   }
