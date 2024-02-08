@@ -38,8 +38,6 @@ public class ParChart {
       maxTrump = (netTrump  > maxTrump) ? netTrump : maxTrump;
     }
     
-    println(minTrump);
-    println(maxTrump);
 
     rects = new ArrayList<DragRect>(); // Initialize the ArrayList
     

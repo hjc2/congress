@@ -59,11 +59,11 @@ void setup(){
   
    pars = new ParChart(oldTable);
   
-  flip = oldTable;
   
   heart = new Pulse(width - 90, height / 2 - 40);
   
   byear = 115;
+  pyear = 115;
  
 }
 
@@ -82,7 +82,6 @@ void draw(){
   }
   heart.draw();
 
-  print(byear);
 }
 
 
