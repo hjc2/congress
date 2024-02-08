@@ -174,6 +174,7 @@ public class BarChart {
   
   void legend(){
     
+      stroke(0);
       textSize(20);
       rectMode(CORNER);
 

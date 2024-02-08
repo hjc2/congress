@@ -23,8 +23,8 @@ int year;
 int barModeP;
 int barModeY;
 
+Pulse heart;
 
-DragRect dr;
 ParChart pars;
 
 
@@ -54,12 +54,13 @@ void setup(){
   
  // ---- 
  
-   dr = new DragRect(400, 400, 600, 600); // Create a DragRect object
-  
+   bars = new BarChart(oldTable);
   
    pars = new ParChart(oldTable);
   
   flip = oldTable;
+  
+  heart = new Pulse();
  
 }
 
@@ -68,17 +69,26 @@ void setup(){
 void draw(){
   background(255);  
     
-  //barInputs();
+  heart.update();
+  heart.draw();
+  if(heart.state == 1){
+    barBeat();
+  } else if(heart.state == 2){
+    parBeat();
+  } else {
+    println("ERROR - state not found");
+  }
+}
 
-  //bars.draw();
-  
-  
-  ////parallel(youngTable);
-  //dr.update();
 
-  //dr.display();
-  
-  
+void barBeat(){
+    
+  barInputs();
+  bars.draw();
+}
+
+void parBeat(){
+    
   pars.update();
   pars.draw();
   
@@ -87,9 +97,7 @@ void draw(){
   fill(0);
 
   circle(50, height - 50, 15);
-  
 }
-
 
 void mouseClicked() {
   //flip = (flip == oldTable) ? youngTable : oldTable;

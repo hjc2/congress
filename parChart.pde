@@ -100,14 +100,14 @@ public class ParChart {
     
     // do all the turned off lines before the on lines
     // the grey lines
-    //for (TableRow row : table.rows()) {
+    for (TableRow row : table.rows()) {
     
-    //  drawLine(row, false);
-    //}
+      drawLine(row, false);
+    }
     
-    //grid();
+    grid();
     
-    //lines();
+    lines();
     
     for (DragRect rect : rects) {
        
@@ -115,6 +115,8 @@ public class ParChart {
        
    }
    
+   legend();
+   title();
    //drawTrash();
     
   }
@@ -303,6 +305,41 @@ public class ParChart {
     textSize(30);
     text("TRASH", 810, 740);
   }
+  
+    void legend(){
+    
+      textSize(20);
+      rectMode(CORNER);
+      
+      stroke(0);
+      choosePartyFill("D");
+      rect(width - xPad + 20 - 100, height - 85, 15, 15);
+      choosePartyFill("R");
+      rect(width - xPad + 20 - 100, height - 60, 15, 15);
+
+
+      fill(0);
+      stroke(0);
+      text("democrats", width - 195, height - 70);
+      text("republicans", width - 195, height - 45);
+
+  }
+  
+  void title(){
+    stroke(0);
+    fill(0);
+    
+    textSize(25);
+    
+    text("Senate Voting Alignment with Trump by Senator and Party Affiliation", width / 2 - 375, height - 75);
+
+    textSize(20);
+    
+    text(str(year) + "'th Senate", width / 2 - 45, height - 40);
+      
+    
+  }
+  
     
 }
   
