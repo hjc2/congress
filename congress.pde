@@ -82,6 +82,7 @@ void draw(){
   }
   heart.draw();
 
+  print(byear);
 }
 
 
@@ -89,15 +90,11 @@ void barBeat(){
     
   barInputs();
   
-
-  
   bars.draw();
 }
 
 void parBeat(){
    
-
-  
    if(pButton() != 0){
      
      if(pButton() == 1){

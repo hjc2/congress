@@ -378,12 +378,12 @@ public class ParChart {
 int pButton(){
   if(mousePressed){
     if(dist(mouseX, mouseY, 115, height - 75) < 15){
-      byear = 115;
+      pyear = 115;
       return(1);
     }
   
     if(dist(mouseX, mouseY, 115, height - 50) < 15){
-      byear = 116;
+      pyear = 116;
       return(2);
     }
   }
