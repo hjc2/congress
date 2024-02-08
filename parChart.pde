@@ -55,7 +55,7 @@ public class ParChart {
      
      handleMove();
      
-     trashCan();
+     //trashCan();
 
    }
    
@@ -84,11 +84,9 @@ public class ParChart {
         
         flagDrag = true;
         
-        break;
+        i = rects.size();
       }
-      
-      println(i);
-      
+            
     }
     }
     
@@ -102,14 +100,14 @@ public class ParChart {
     
     // do all the turned off lines before the on lines
     // the grey lines
-    for (TableRow row : table.rows()) {
+    //for (TableRow row : table.rows()) {
     
-      drawLine(row, false);
-    }
+    //  drawLine(row, false);
+    //}
     
-    grid();
+    //grid();
     
-    lines();
+    //lines();
     
     for (DragRect rect : rects) {
        
@@ -117,7 +115,7 @@ public class ParChart {
        
    }
    
-   drawTrash();
+   //drawTrash();
     
   }
   

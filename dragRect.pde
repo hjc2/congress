@@ -29,13 +29,6 @@ public class DragRect {
     
     public void display(){
       
-      //int weight = 2;
-      //stroke(255);
-      //noFill();
-      //strokeWeight(weight * 2);
-      //rect(x1+weight,y1+weight,x2-weight,y2-weight);
-      //rect(x1-weight,y1-weight,x2+weight,y2+weight);
-
       stroke(0);
       noFill();
       strokeWeight(3);
@@ -59,6 +52,9 @@ public class DragRect {
         // checking for tolerance 
         int choice = edgeTolerance();
         
+        println(choice);
+        println(mouseX);
+        println(x2);
         // checking if there was a previous edge
         if(wasEdge != 0){
           choice = wasEdge;
@@ -115,10 +111,10 @@ public class DragRect {
     private int edgeTolerance(){
       
       if(inBox()) return 0;
-      if (distLine(x1, y1, x2, y1) < tolerance) return 1; // Top edge
-      if (distLine(x2, y1, x2, y2) < tolerance) return 2; // Right edge
-      if (distLine(x1, y2, x2, y2) < tolerance) return 3; // Bottom edge
-      if (distLine(x1, y1, x1, y2) < tolerance) return 4; // Left edge
+      if (distLine(x1, y1, x2, y1) < tolerance && mouseX - x2 < 0 && mouseX - x1 > 0) return 1; // Top edge
+      if (distLine(x2, y1, x2, y2) < tolerance && mouseY - y2 < 0 && mouseY - y1 > 0) return 2; // Right edge
+      if (distLine(x1, y2, x2, y2) < tolerance && mouseX - x2 < 0 && mouseX - x1 > 0) return 3; // Bottom edge
+      if (distLine(x1, y1, x1, y2) < tolerance && mouseY - y2 < 0 && mouseY - y1 > 0) return 4; // Left edge
       return 0; // no edge
     }
     
