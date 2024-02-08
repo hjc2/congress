@@ -53,6 +53,9 @@ public class ParChart {
  
    public void update(){
      
+
+     
+     
      handleMove();
      
      //trashCan();
@@ -117,6 +120,7 @@ public class ParChart {
    
    legend();
    title();
+   drawCon();
    //drawTrash();
     
   }
@@ -340,7 +344,33 @@ public class ParChart {
     
   }
   
+  void drawCon(){
     
+    fill(40,40,40);
+    stroke(0);
+    
+    strokeWeight(3);
+    
+    fill(255,255,255);
+    circle(115, height - 50, 15);
+    circle(115, height - 75, 15);
+
+    //strokeWeight(2);
+    fill(0);
+    if(year == 116){
+      circle(115, height - 50, 4);
+    } else {
+      circle(115, height - 75, 4);
+    }
+    strokeWeight(3);
+    
+        fill(0);
+    stroke(0);
+    textSize(20);
+    text("115", 130, height - 70);
+    text("116", 130, height - 45);
+
+  }
 }
   
   

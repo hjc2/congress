@@ -89,7 +89,24 @@ void barBeat(){
 }
 
 void parBeat(){
-    
+  
+   if(buttons() != 0){
+     
+     if(buttons() == 1){
+          ParChart lars = new ParChart(oldTable);
+          lars.rects = pars.rects;
+          
+          pars = lars;
+     }
+     if(buttons() == 2){
+          ParChart lars = new ParChart(youngTable);
+          lars.rects = pars.rects;
+          
+          pars = lars;       
+     }
+     
+   }
+     
   pars.update();
   pars.draw();
   

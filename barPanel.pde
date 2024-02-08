@@ -47,8 +47,6 @@ void barInputs(){
      barModeP = rmp;
     barToData(barModeY, barModeP);
    }
-   
-   
 }
 
 
