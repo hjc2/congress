@@ -165,26 +165,25 @@ public class ParChart {
 
      choosePartyStroke(party);
      
+     boolean flag = true;
+     
      if(rects.size() > 0){
        
-       
-      boolean flag = false;
+      flag = false;
       
       for (DragRect rect : rects) {
         
-        if(rect.lineIntersectsRectangle(xPad + i * chartWidth / 3, voteMap,  xPad + (i+1) * chartWidth / 3, predMap)){
-          
-
+        if(rect.lineInter(xPad + 0 * chartWidth / 3, voteMap,  xPad + 1 * chartWidth / 3, predMap) || 
+           rect.lineInter(xPad + 1 * chartWidth / 3, predMap, xPad + 2 * chartWidth / 3, agreeMap) || 
+           rect.lineInter(xPad + 2 * chartWidth / 3, agreeMap, xPad + 3 * chartWidth / 3, netMap)){
+         
           flag = true;
-        }
-        if(flag){
-            line(xPad + i * chartWidth / 3, voteMap,  xPad + (i+1) * chartWidth / 3, predMap);
-
         }
       }
              
-       
-     } else {
+     }
+     
+     if(flag){
      
       line(xPad + i * chartWidth / 3, voteMap,  xPad + (i+1) * chartWidth / 3, predMap);
       i++;
