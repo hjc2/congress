@@ -112,7 +112,7 @@ public class ParChart {
   
   public void newRect(){
     
-   rects.add(new DragRect(400, 400, 600, 600)); // Create a DragRect object
+   rects.add(new DragRect(440, 440, 500, 500)); // Create a DragRect object
     
   }
   
@@ -209,26 +209,29 @@ public class ParChart {
       flag = false;
       
       for (DragRect rect : rects) {
-        
-        if(rect.lineInter(xPad + 0 * chartWidth / 3, voteMap,  xPad + 1 * chartWidth / 3, predMap) || 
-           rect.lineInter(xPad + 1 * chartWidth / 3, predMap, xPad + 2 * chartWidth / 3, agreeMap) || 
-           rect.lineInter(xPad + 2 * chartWidth / 3, agreeMap, xPad + 3 * chartWidth / 3, netMap)){
-         
-          flag = true;
-        }
+        flag = flag || (rect.lineInter(xPad + 0 * chartWidth / 3.0, voteMap,  xPad + 1 * chartWidth / 3.0, predMap) || 
+           rect.lineInter(xPad + 1 * chartWidth / 3.0, predMap, xPad + 2 * chartWidth / 3.0, agreeMap) || 
+           rect.lineInter(xPad + 2 * chartWidth / 3.0, agreeMap, xPad + 3 * chartWidth / 3.0, netMap));
       }
              
      }
      
      if(flag){
+      
+      choosePartyStroke(party);
+      strokeWeight(3);
+      
+     }  else {
+       
+       strokeWeight(1);
+       stroke(60,60,60);
+     }
      
       line(xPad + i * chartWidth / 3, voteMap,  xPad + (i+1) * chartWidth / 3, predMap);
       i++;
       line(xPad + i * chartWidth / 3, predMap, xPad + (i+1) * chartWidth / 3, agreeMap);
       i++;
       line(xPad + i * chartWidth / 3, agreeMap, xPad + (i+1) * chartWidth / 3, netMap);
-      
-     }
   }
 }
   

@@ -57,7 +57,7 @@ void setup(){
    dr = new DragRect(400, 400, 600, 600); // Create a DragRect object
   
   
-   pars = new ParChart(youngTable);
+   pars = new ParChart(oldTable);
   
   flip = oldTable;
  

@@ -3,7 +3,7 @@
 
 public class DragRect {
   
-    final float mini = 50;
+    final float mini = 40;
     
     //PApplet parent;
     float x1, y1;
@@ -29,6 +29,13 @@ public class DragRect {
     
     public void display(){
       
+      //int weight = 2;
+      //stroke(255);
+      //noFill();
+      //strokeWeight(weight * 2);
+      //rect(x1+weight,y1+weight,x2-weight,y2-weight);
+      //rect(x1-weight,y1-weight,x2+weight,y2+weight);
+
       stroke(0);
       noFill();
       strokeWeight(3);
