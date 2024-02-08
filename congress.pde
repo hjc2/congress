@@ -54,7 +54,7 @@ void setup(){
  
    dr = new DragRect(this, 400, 400, 600, 600); // Create a DragRect object
 
-   pars = new ParChart(oldTable);
+   pars = new ParChart(youngTable);
 
  
 }

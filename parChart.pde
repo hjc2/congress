@@ -25,6 +25,8 @@ public class ParChart {
       votes = (int(row.getString("votes")) > votes) ? int(row.getString("votes")) : votes;
     }
     
+    println(votes);
+    
   }
     
     // "total votes", "predicted", "agree_pct", "trump %"
@@ -52,20 +54,33 @@ public class ParChart {
         text(titles[i], tmpX - 40, yPad - 30);
         
         line(tmpX, yPad, tmpX, height - yPad);
-        for(int j = 0; j < 6; j++){
-          
-          line(tmpX - 10, yPad + j * (chartHeight / 5), tmpX, yPad + j * (chartHeight / 5));
-          
-          String label = str(100.0 - j * 20);
 
+
+        if(i == 0){
+
+            for(int j = 0; j < 6; j++){
+            line(tmpX - 10, yPad + j * (chartHeight / 5), tmpX, yPad + j * (chartHeight / 5));
+            textSize(15);
+
+            text(str(int(votes - j * (float(votes) / 5))), tmpX - 30, yPad + j * (chartHeight / 5));
+            }
+        } else {
+          for(int j = 0; j < 6; j++){
+            
+            line(tmpX - 10, yPad + j * (chartHeight / 5), tmpX, yPad + j * (chartHeight / 5));
+            
+            String label = str(100.0 - j * 20);
+  
+          
+            textSize(15);
+            text(label + "%", tmpX - 55,  yPad + j * (chartHeight / 5));
+          }
         
-          textSize(15);
-          text(label + "%", tmpX - 55,  yPad + j * (chartHeight / 5));
         }
-        
       }
     
   }
+  
 }
   
   
