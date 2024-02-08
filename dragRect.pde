@@ -5,7 +5,7 @@ public class DragRect {
   
     final float mini = 50;
     
-    PApplet parent;
+    //PApplet parent;
     float x1, y1;
     float x2, y2;
     int tolerance;
@@ -16,8 +16,8 @@ public class DragRect {
     int wasEdge;
     boolean dragging;
     
-     public DragRect(PApplet p, float x1, float y1, float x2, float y2) {
-      parent = p;
+     public DragRect(float x1, float y1, float x2, float y2) {
+      //parent = p;
       this.x1 = x1;
       this.y1 = y1;
       this.x2 = x2;

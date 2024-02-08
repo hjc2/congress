@@ -1,4 +1,6 @@
 
+import processing.core.PApplet;
+
 
 public class ParChart {
   Table table;
@@ -12,6 +14,7 @@ public class ParChart {
   float minTrump;
   float maxTrump;
   
+  ArrayList<DragRect> rects;
   
   private int maxvote;
   
@@ -35,19 +38,43 @@ public class ParChart {
     println(minTrump);
     println(maxTrump);
 
-    
+    rects = new ArrayList<DragRect>(); // Initialize the ArrayList
     
         
   }
     
     // "total totalVotes", "predicted", "agree_pct", "trump %"
     
+ 
+   public void update(){
+     
+    for (DragRect rect : rects) {
+       
+      rect.update();
+       
+     }
+     
+   }
       
   public void draw(){
     
     grid();
     
     lines();
+    
+    for (DragRect rect : rects) {
+       
+      rect.display();
+       
+   }
+    
+  }
+  
+  public void newRect(){
+    
+   rects.add(new DragRect(400, 400, 600, 600)); // Create a DragRect object
+
+    
     
   }
   
@@ -146,10 +173,7 @@ public class ParChart {
       i++;
       line(xPad + i * chartWidth / 3, agreeMap, xPad + (i+1) * chartWidth / 3, netMap);
       
-     //line(xPad + i * chartWidth / 3, ,  xPad + (i+1) * chartWidth / 3, );
-     //i++;
-     
-      //}
+
   }
 }
   

@@ -54,7 +54,7 @@ void setup(){
   
  // ---- 
  
-   dr = new DragRect(this, 400, 400, 600, 600); // Create a DragRect object
+   dr = new DragRect(400, 400, 600, 600); // Create a DragRect object
   
   
    pars = new ParChart(oldTable);
@@ -78,12 +78,25 @@ void draw(){
 
   //dr.display();
   
+  pars.update();
   pars.draw();
+  
+  
+  stroke(0);
+  fill(0);
+
+  circle(50, height - 50, 15);
   
 }
 
 
 void mouseClicked() {
-  flip = (flip == oldTable) ? youngTable : oldTable;
-  pars = new ParChart(flip);
+  //flip = (flip == oldTable) ? youngTable : oldTable;
+  //pars = new ParChart(flip);
+  
+  if(dist(mouseX,mouseY,50, height - 50) < 15){
+  
+    //pars.ne
+  
+  }
 }
