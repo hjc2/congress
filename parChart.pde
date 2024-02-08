@@ -20,6 +20,8 @@ public class ParChart {
   
   int dragging = -1;
   
+  int scaling = -1;
+  
   public ParChart(Table t){
     
     xPad = 140;
@@ -51,7 +53,13 @@ public class ParChart {
  
    public void update(){
      
-     boolean flagDrag = false;
+     handleMove();
+
+   }
+   
+   private void handleMove(){
+     
+    boolean flagDrag = false;
 
     if(dragging != -1){
       
@@ -60,6 +68,7 @@ public class ParChart {
       //flagDrag = true;
       
       flagDrag = rects.get(dragging).dragging;
+      flagDrag = flagDrag || rects.get(dragging).wasEdge != 0;
       
     } else {
     
@@ -67,7 +76,7 @@ public class ParChart {
        
       rects.get(i).update();
       
-      if(rects.get(i).dragging){
+      if(rects.get(i).dragging || rects.get(i).wasEdge != 0){
         
         dragging = i;
         
@@ -84,6 +93,11 @@ public class ParChart {
     if(!flagDrag){
       dragging = -1;
     }
+   }
+   
+   private void handleScale(){
+     
+
    }
       
   public void draw(){
