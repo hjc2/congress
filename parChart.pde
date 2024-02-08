@@ -95,10 +95,6 @@ public class ParChart {
     }
    }
    
-   private void handleScale(){
-     
-
-   }
       
   public void draw(){
     
