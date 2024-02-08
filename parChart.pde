@@ -8,7 +8,10 @@ public class ParChart {
   int chartWidth;
   int chartHeight;
   
-  int votes; // max number in the dataset
+  int totalVotes; // max number in the dataset
+  float minTrump;
+  float maxTrump;
+  
   
   private int maxvote;
   
@@ -22,19 +25,29 @@ public class ParChart {
     table = t;
     
     for (TableRow row : t.rows()) {
-      votes = (int(row.getString("votes")) > votes) ? int(row.getString("votes")) : votes;
+      totalVotes = (int(row.getString("votes")) > totalVotes) ? int(row.getString("votes")) : totalVotes;
+      float netTrump = float(row.getString("net_trump_vote"));
+      
+      minTrump = (netTrump  < minTrump) ? netTrump : minTrump;
+      maxTrump = (netTrump  > maxTrump) ? netTrump : maxTrump;
     }
     
-    println(votes);
+    println(minTrump);
+    println(maxTrump);
+
     
+    
+        
   }
     
-    // "total votes", "predicted", "agree_pct", "trump %"
+    // "total totalVotes", "predicted", "agree_pct", "trump %"
     
       
   public void draw(){
     
     grid();
+    
+    lines();
     
   }
   
@@ -62,8 +75,21 @@ public class ParChart {
             line(tmpX - 10, yPad + j * (chartHeight / 5), tmpX, yPad + j * (chartHeight / 5));
             textSize(15);
 
-            text(str(int(votes - j * (float(votes) / 5))), tmpX - 30, yPad + j * (chartHeight / 5));
+            text(str(int(totalVotes - j * (float(totalVotes) / 5))), tmpX - 30, yPad + j * (chartHeight / 5));
             }
+        } else if(i == 3){
+          
+            for(int j = 0; j < 6; j++){
+              line(tmpX - 10, yPad + j * (chartHeight / 5), tmpX, yPad + j * (chartHeight / 5));
+              
+              String label = str(100.0 - j * 20 - 50);
+    
+            
+              textSize(15);
+              text(label + "%", tmpX - 55,  yPad + j * (chartHeight / 5));
+            }
+          
+          
         } else {
           for(int j = 0; j < 6; j++){
             
@@ -81,6 +107,50 @@ public class ParChart {
     
   }
   
+  
+  private void lines(){
+    
+    for (TableRow row : table.rows()) {
+    
+      drawLine(row);
+    }
+  }
+  
+  private void drawLine(TableRow row){
+    
+      //for(int i = 0; i < 3; i++) {
+     int i = 0;
+     
+     int votes = int(row.getString("votes"));
+     float voteMap = map(votes, 0, totalVotes, height - yPad, yPad);
+     
+     float pred = float(row.getString("predicted_agree"));
+     float predMap = map(pred, 0, 1.0, height - yPad,yPad);
+     
+     float agree = float(row.getString("agree_pct"));
+     float agreeMap = map(agree, 0, 1.0, height - yPad, yPad);
+
+     float net = float(row.getString("net_trump_vote"));
+     float netMap = map(net, -50.0, 50.0, height - yPad, yPad);
+
+      
+    
+     String party = row.getString("party");
+
+
+     choosePartyStroke(party);
+     
+      line(xPad + i * chartWidth / 3, voteMap,  xPad + (i+1) * chartWidth / 3, predMap);
+      i++;
+      line(xPad + i * chartWidth / 3, predMap, xPad + (i+1) * chartWidth / 3, agreeMap);
+      i++;
+      line(xPad + i * chartWidth / 3, agreeMap, xPad + (i+1) * chartWidth / 3, netMap);
+      
+     //line(xPad + i * chartWidth / 3, ,  xPad + (i+1) * chartWidth / 3, );
+     //i++;
+     
+      //}
+  }
 }
   
   

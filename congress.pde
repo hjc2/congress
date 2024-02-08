@@ -13,6 +13,8 @@ Table youngRep; // 4
 Table oldRep; // 5
 Table oldDems; // 6
 
+Table flip;
+
 BarChart bars;
 
 int party;
@@ -53,9 +55,11 @@ void setup(){
  // ---- 
  
    dr = new DragRect(this, 400, 400, 600, 600); // Create a DragRect object
-
-   pars = new ParChart(youngTable);
-
+  
+  
+   pars = new ParChart(oldTable);
+  
+  flip = oldTable;
  
 }
 
@@ -76,4 +80,10 @@ void draw(){
   
   pars.draw();
   
+}
+
+
+void mouseClicked() {
+  flip = (flip == oldTable) ? youngTable : oldTable;
+  pars = new ParChart(flip);
 }
