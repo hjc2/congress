@@ -78,6 +78,7 @@ void draw(){
 
   //dr.display();
   
+  
   pars.update();
   pars.draw();
   
@@ -97,6 +98,8 @@ void mouseClicked() {
   if(dist(mouseX,mouseY,50, height - 50) < 15){
   
     //pars.ne
+    
+    pars.newRect();
   
   }
 }

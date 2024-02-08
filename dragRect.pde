@@ -30,7 +30,7 @@ public class DragRect {
     public void display(){
       
       stroke(0);
-      fill(255);
+      noFill();
       strokeWeight(3);
       rectMode(CORNERS);
       rect(x1,y1,x2,y2);
@@ -144,6 +144,26 @@ public class DragRect {
       float d = abs(a * x0 + b * y0 + c) / sqrt(a * a + b * b);
       
       return d;
+    }
+    
+    
+      public boolean lineIntersectsRectangle(float x3, float y3, float x4, float y4) {
+        // Check if the line intersects any of the rectangle's edges
+        boolean topIntersects = lineSegmentsIntersect(x1, y1, x2, y2, x3, y3, x4, y3);
+        boolean rightIntersects = lineSegmentsIntersect(x1, y1, x2, y2, x4, y3, x4, y4);
+        boolean bottomIntersects = lineSegmentsIntersect(x1, y1, x2, y2, x3, y4, x4, y4);
+        boolean leftIntersects = lineSegmentsIntersect(x1, y1, x2, y2, x3, y3, x3, y4);
+    
+        // Return true if any intersection occurs
+        return topIntersects || rightIntersects || bottomIntersects || leftIntersects;
+        }
+    
+    private boolean lineSegmentsIntersect(float x1, float y1, float x2, float y2, float x3, float y3, float x4, float y4) {
+        // Implementation of line segment intersection algorithm
+        // This could be the Cohen–Sutherland algorithm or another suitable algorithm
+        // For simplicity, we will assume that the line segments intersect if they overlap
+        // This is not a robust solution and should be replaced with a proper algorithm for accurate results
+        return (x1 < max(x3, x4) && x2 > min(x3, x4) && y1 < max(y3, y4) && y2 > min(y3, y4));
     }
 
 }

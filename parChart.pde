@@ -19,6 +19,7 @@ public class ParChart {
   private int maxvote;
   
   
+  
   public ParChart(Table t){
     
     xPad = 140;
@@ -42,6 +43,8 @@ public class ParChart {
     
         
   }
+  
+  
     
     // "total totalVotes", "predicted", "agree_pct", "trump %"
     
@@ -52,7 +55,7 @@ public class ParChart {
        
       rect.update();
        
-     }
+    }
      
    }
       
@@ -73,8 +76,6 @@ public class ParChart {
   public void newRect(){
     
    rects.add(new DragRect(400, 400, 600, 600)); // Create a DragRect object
-
-    
     
   }
   
@@ -145,7 +146,6 @@ public class ParChart {
   
   private void drawLine(TableRow row){
     
-      //for(int i = 0; i < 3; i++) {
      int i = 0;
      
      int votes = int(row.getString("votes"));
@@ -159,13 +159,32 @@ public class ParChart {
 
      float net = float(row.getString("net_trump_vote"));
      float netMap = map(net, -50.0, 50.0, height - yPad, yPad);
-
-      
     
      String party = row.getString("party");
 
 
      choosePartyStroke(party);
+     
+     if(rects.size() > 0){
+       
+       
+      boolean flag = false;
+      
+      for (DragRect rect : rects) {
+        
+        if(rect.lineIntersectsRectangle(xPad + i * chartWidth / 3, voteMap,  xPad + (i+1) * chartWidth / 3, predMap)){
+          
+
+          flag = true;
+        }
+        if(flag){
+            line(xPad + i * chartWidth / 3, voteMap,  xPad + (i+1) * chartWidth / 3, predMap);
+
+        }
+      }
+             
+       
+     } else {
      
       line(xPad + i * chartWidth / 3, voteMap,  xPad + (i+1) * chartWidth / 3, predMap);
       i++;
@@ -173,7 +192,7 @@ public class ParChart {
       i++;
       line(xPad + i * chartWidth / 3, agreeMap, xPad + (i+1) * chartWidth / 3, netMap);
       
-
+     }
   }
 }
   
