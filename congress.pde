@@ -74,6 +74,6 @@ void draw(){
 
   //dr.display();
   
-  
+  pars.draw();
   
 }
