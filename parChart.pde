@@ -1,6 +1,6 @@
 
 import processing.core.PApplet;
-
+import java.util.Iterator;
 
 public class ParChart {
   Table table;
@@ -54,6 +54,8 @@ public class ParChart {
    public void update(){
      
      handleMove();
+     
+     trashCan();
 
    }
    
@@ -98,6 +100,13 @@ public class ParChart {
       
   public void draw(){
     
+    // do all the turned off lines before the on lines
+    // the grey lines
+    for (TableRow row : table.rows()) {
+    
+      drawLine(row, false);
+    }
+    
     grid();
     
     lines();
@@ -107,6 +116,8 @@ public class ParChart {
       rect.display();
        
    }
+   
+   drawTrash();
     
   }
   
@@ -175,13 +186,16 @@ public class ParChart {
   
   private void lines(){
     
+
+    // now all the on lines
     for (TableRow row : table.rows()) {
     
-      drawLine(row);
+      drawLine(row, true);
     }
+    
   }
   
-  private void drawLine(TableRow row){
+  private void drawLine(TableRow row, boolean onOff){
     
      int i = 0;
      
@@ -216,23 +230,80 @@ public class ParChart {
              
      }
      
+     
      if(flag){
       
-      choosePartyStroke(party);
-      strokeWeight(3);
-      
+      if(onOff){
+        choosePartyStroke(party);
+        strokeWeight(3);
+        
+        line(xPad + i * chartWidth / 3, voteMap,  xPad + (i+1) * chartWidth / 3, predMap);
+        i++;
+        line(xPad + i * chartWidth / 3, predMap, xPad + (i+1) * chartWidth / 3, agreeMap);
+        i++;
+        line(xPad + i * chartWidth / 3, agreeMap, xPad + (i+1) * chartWidth / 3, netMap);
+      }
      }  else {
        
+       if(!onOff){
        strokeWeight(1);
-       stroke(60,60,60);
+       stroke(140,140,140);
+       
+       line(xPad + i * chartWidth / 3, voteMap,  xPad + (i+1) * chartWidth / 3, predMap);
+        i++;
+        line(xPad + i * chartWidth / 3, predMap, xPad + (i+1) * chartWidth / 3, agreeMap);
+        i++;
+        line(xPad + i * chartWidth / 3, agreeMap, xPad + (i+1) * chartWidth / 3, netMap);
+       }
      }
-     
-      line(xPad + i * chartWidth / 3, voteMap,  xPad + (i+1) * chartWidth / 3, predMap);
-      i++;
-      line(xPad + i * chartWidth / 3, predMap, xPad + (i+1) * chartWidth / 3, agreeMap);
-      i++;
-      line(xPad + i * chartWidth / 3, agreeMap, xPad + (i+1) * chartWidth / 3, netMap);
   }
+  
+  void trashCan(){
+    
+    //void deleteRectanglesInBox(ArrayList<DragRect> rects, float boxX, float boxY, float boxWidth, float boxHeight) {
+      float boxX = 800;
+      float boxY = 680;
+      float boxWidth = 100;
+      float boxHeight = 100;
+      //Iterator<DragRect> iterator = rects.iterator();
+      //while (iterator.hasNext()) {
+      //DragRect rect = iterator.next(); // Get the next rectangle
+
+      //if (rect.x1 >= boxX && rect.x2 <= boxX + boxWidth && rect.y1 >= boxY && rect.y2 <= boxY + boxHeight) {
+      //  iterator.remove(); // Remove the rectangle from the ArrayList
+      //}
+      
+      int toR = -1;
+      
+      for(int i = 0; i < rects.size(); i++){
+          
+        //DragRect rec = rects.get(i);
+        if (rects.get(i).x1 >= boxX && rects.get(i).x2 <= boxX + boxWidth && rects.get(i).y1 >= boxY && rects.get(i).y2 <= boxY + boxHeight) {
+          
+          toR = i;
+          
+        }
+      }
+      
+      if(toR != -1){
+        
+        newRect();
+        
+        rects.remove(toR);
+      }
+        
+  }
+  
+  void drawTrash(){
+    
+    stroke(200,40,40);
+    strokeWeight(3);
+    noFill();
+    rectMode(CORNERS);
+    rect(800,680,900,780);
+    
+  }
+    
 }
   
   
