@@ -18,7 +18,7 @@ public class ParChart {
   
   private int maxvote;
   
-  
+  int dragging = -1;
   
   public ParChart(Table t){
     
@@ -51,12 +51,34 @@ public class ParChart {
  
    public void update(){
      
-    for (DragRect rect : rects) {
+         boolean flagDrag = false;
+
+    if(dragging != -1){
+      
+      rects.get(dragging).update();
+      flagDrag = true;
+    } else {
+    
+    for (int i = 0; i < rects.size(); i++) {
        
-      rect.update();
-       
+      rects.get(i).update();
+      
+      if(rects.get(i).dragging){
+        
+        dragging = i;
+        
+        flagDrag = true;
+        
+        break;
+      }
+      //if(rect.d
+             
     }
-     
+    if(!flagDrag){
+      dragging = -1;
+    }
+    
+    }
    }
       
   public void draw(){

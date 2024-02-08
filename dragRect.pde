@@ -14,7 +14,7 @@ public class DragRect {
 
 
     int wasEdge;
-    boolean dragging;
+    public boolean dragging;
     
      public DragRect(float x1, float y1, float x2, float y2) {
       //parent = p;
