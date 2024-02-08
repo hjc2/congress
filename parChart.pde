@@ -302,6 +302,8 @@ public class ParChart {
     rectMode(CORNERS);
     rect(800,680,900,780);
     
+    textSize(30);
+    text("TRASH", 810, 740);
   }
     
 }
