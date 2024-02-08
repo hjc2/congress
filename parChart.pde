@@ -51,12 +51,16 @@ public class ParChart {
  
    public void update(){
      
-         boolean flagDrag = false;
+     boolean flagDrag = false;
 
     if(dragging != -1){
       
       rects.get(dragging).update();
-      flagDrag = true;
+      
+      //flagDrag = true;
+      
+      flagDrag = rects.get(dragging).dragging;
+      
     } else {
     
     for (int i = 0; i < rects.size(); i++) {
@@ -71,13 +75,14 @@ public class ParChart {
         
         break;
       }
-      //if(rect.d
-             
+      
+      println(i);
+      
     }
-    if(!flagDrag){
-      dragging = -1;
     }
     
+    if(!flagDrag){
+      dragging = -1;
     }
    }
       
