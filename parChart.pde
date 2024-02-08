@@ -339,7 +339,7 @@ public class ParChart {
 
     textSize(20);
     
-    text(str(year) + "'th Senate", width / 2 - 45, height - 40);
+    text(str(pyear) + "'th Senate", width / 2 - 45, height - 40);
       
     
   }
@@ -357,7 +357,7 @@ public class ParChart {
 
     //strokeWeight(2);
     fill(0);
-    if(year == 116){
+    if(pyear == 116){
       circle(115, height - 50, 4);
     } else {
       circle(115, height - 75, 4);
@@ -373,4 +373,20 @@ public class ParChart {
   }
 }
   
+  
+  
+int pButton(){
+  if(mousePressed){
+    if(dist(mouseX, mouseY, 115, height - 75) < 15){
+      byear = 115;
+      return(1);
+    }
+  
+    if(dist(mouseX, mouseY, 115, height - 50) < 15){
+      byear = 116;
+      return(2);
+    }
+  }
+  return(0);
+}
   

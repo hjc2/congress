@@ -18,7 +18,8 @@ Table flip;
 BarChart bars;
 
 int party;
-int year;
+int byear;
+int pyear;
 
 int barModeP;
 int barModeY;
@@ -61,6 +62,8 @@ void setup(){
   flip = oldTable;
   
   heart = new Pulse(width - 90, height / 2 - 40);
+  
+  byear = 115;
  
 }
 
@@ -68,7 +71,7 @@ void setup(){
 
 void draw(){
   background(255);  
-    
+  
   heart.update();
   if(heart.state == 1){
     barBeat();
@@ -85,20 +88,25 @@ void draw(){
 void barBeat(){
     
   barInputs();
+  
+
+  
   bars.draw();
 }
 
 void parBeat(){
+   
+
   
-   if(buttons() != 0){
+   if(pButton() != 0){
      
-     if(buttons() == 1){
+     if(pButton() == 1){
           ParChart lars = new ParChart(oldTable);
           lars.rects = pars.rects;
           
           pars = lars;
      }
-     if(buttons() == 2){
+     if(pButton() == 2){
           ParChart lars = new ParChart(youngTable);
           lars.rects = pars.rects;
           

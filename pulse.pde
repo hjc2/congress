@@ -3,14 +3,14 @@
 
 public class Pulse {
 
-  
+  int prevState;
   int state;
   int x;
   int y;
   
   
   public Pulse(int x, int y){
-    
+    prevState = 1;
     state = 1;
     this.x = x;
     this.y = y;
@@ -18,8 +18,10 @@ public class Pulse {
   }
   
   public void update(){
-    if(mousePressed){
     
+    prevState = state;
+    
+    if(mousePressed){
       if(dist(mouseX, mouseY, x+20, y+22) < 25){
         state = 1;
       }
@@ -27,7 +29,10 @@ public class Pulse {
       if(dist(mouseX, mouseY, x+20, y+58) < 25){
         state = 2;
       }        
-    }}
+    }
+  
+
+}
   
   public void draw(){
     

@@ -167,7 +167,7 @@ public class BarChart {
     text("Senators", width / 2 - 50, height - 55);
     textSize(15);
     
-    text(str(year) + "'th Senate", width / 2 - 45, height - 35);
+    text(str(byear) + "'th Senate", width / 2 - 45, height - 35);
       
     
   }
@@ -205,7 +205,7 @@ public class BarChart {
 
     //strokeWeight(2);
     fill(0);
-    if(year == 116){
+    if(byear == 116){
       circle(115, height - 50, 4);
     } else {
       circle(115, height - 75, 4);

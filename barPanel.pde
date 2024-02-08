@@ -3,12 +3,12 @@
 int buttons(){
   if(mousePressed){
     if(dist(mouseX, mouseY, 115, height - 75) < 15){
-      year = 115;
+      byear = 115;
       return(1);
     }
   
     if(dist(mouseX, mouseY, 115, height - 50) < 15){
-      year = 116;
+      byear = 116;
       return(2);
     }
   }
