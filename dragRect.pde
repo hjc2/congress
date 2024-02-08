@@ -148,18 +148,30 @@ public class DragRect {
     
     
       public boolean lineInter(float x3, float y3, float x4, float y4) {
-        // Check if the line intersects any of the rectangle's edges
-        boolean topIntersects = lineSegmentsIntersect(x1, y1, x2, y2, x3, y3, x4, y3);
-        boolean rightIntersects = lineSegmentsIntersect(x1, y1, x2, y2, x4, y3, x4, y4);
-        boolean bottomIntersects = lineSegmentsIntersect(x1, y1, x2, y2, x3, y4, x4, y4);
-        boolean leftIntersects = lineSegmentsIntersect(x1, y1, x2, y2, x3, y3, x3, y4);
+        
+        boolean topIntersects =    linesIntersect(x1, y1, x2, y1, x3, y3, x4, y4);
+        boolean rightIntersects =  linesIntersect(x2, y1, x2, y2, x3, y3, x4, y4);
+        boolean bottomIntersects = linesIntersect(x1, y2, x2, y2, x3, y3, x4, y4);
+        boolean leftIntersects =   linesIntersect(x1, y1, x1, y2, x3, y3, x4, y4);
     
         // Return true if any intersection occurs
         return topIntersects || rightIntersects || bottomIntersects || leftIntersects;
         }
     
-    private boolean lineSegmentsIntersect(float x1, float y1, float x2, float y2, float x3, float y3, float x4, float y4) {
-        return (x1 < max(x3, x4) && x2 > min(x3, x4) && y1 < max(y3, y4) && y2 > min(y3, y4));
+    boolean linesIntersect(float x1, float y1, float x2, float y2, float x3, float y3, float x4, float y4) {
+      float denominator = (x1 - x2) * (y3 - y4) - (y1 - y2) * (x3 - x4);
+      if (denominator == 0) return false; // Lines are parallel
+      
+      float intersectX = ((x1 * y2 - y1 * x2) * (x3 - x4) - (x1 - x2) * (x3 * y4 - y3 * x4)) / denominator;
+      float intersectY = ((x1 * y2 - y1 * x2) * (y3 - y4) - (y1 - y2) * (x3 * y4 - y3 * x4)) / denominator;
+      
+      if (intersectX >= min(x1, x2) && intersectX <= max(x1, x2) && intersectY >= min(y1, y2) && intersectY <= max(y1, y2) &&
+          intersectX >= min(x3, x4) && intersectX <= max(x3, x4) && intersectY >= min(y3, y4) && intersectY <= max(y3, y4)) {
+        return true; // Lines intersect within segments
+      }
+      
+      return false;
     }
+
 
 }
