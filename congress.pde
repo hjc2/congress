@@ -60,7 +60,7 @@ void setup(){
   
   flip = oldTable;
   
-  heart = new Pulse();
+  heart = new Pulse(width - 90, height / 2 - 40);
  
 }
 
@@ -70,7 +70,6 @@ void draw(){
   background(255);  
     
   heart.update();
-  heart.draw();
   if(heart.state == 1){
     barBeat();
   } else if(heart.state == 2){
@@ -78,6 +77,8 @@ void draw(){
   } else {
     println("ERROR - state not found");
   }
+  heart.draw();
+
 }
 
 
