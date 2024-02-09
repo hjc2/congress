@@ -444,6 +444,7 @@ public class ParChart {
      float netMap = map(net, -50.0, 50.0, height - yPad, yPad);
      
         String name = row.getString("last_name");
+        String state = row.getString("state");
 
         strokeWeight(4);
         stroke(255,20,255);
@@ -454,7 +455,8 @@ public class ParChart {
         i++;
         line(xPad + i * chartWidth / 3, agreeMap, xPad + (i+1) * chartWidth / 3, netMap);
         
-     text(name, 100, 700);
+     textSize(15);
+     text(name + ", " + state, 100, 700);
   }
 }
 

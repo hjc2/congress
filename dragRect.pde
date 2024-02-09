@@ -3,7 +3,7 @@
 
 public class DragRect {
   
-    final float mini = 40;
+    final float mini = 25;
     
     //PApplet parent;
     float x1, y1;
