@@ -225,7 +225,7 @@ public class ParChart {
       flag = false;
       
       for (DragRect rect : rects) {
-        flag = flag || (rect.lineInter(xPad + 0 * chartWidth / 3.0, voteMap,  xPad + 1 * chartWidth / 3.0, predMap) || 
+        flag = flag || (rect.lineInter(xPad, voteMap,  xPad + 1 * chartWidth / 3.0, predMap) || 
            rect.lineInter(xPad + 1 * chartWidth / 3.0, predMap, xPad + 2 * chartWidth / 3.0, agreeMap) || 
            rect.lineInter(xPad + 2 * chartWidth / 3.0, agreeMap, xPad + 3 * chartWidth / 3.0, netMap));
       }

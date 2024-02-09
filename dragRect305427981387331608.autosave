@@ -152,21 +152,29 @@ public class DragRect {
     
       public boolean lineInter(float x3, float y3, float x4, float y4) {
         
-        boolean topIntersects =    linesIntersect(x1, y1, x2, y1, x3, y3, x4, y4);
-        boolean rightIntersects =  linesIntersect(x2, y1, x2, y2, x3, y3, x4, y4);
-        boolean bottomIntersects = linesIntersect(x1, y2, x2, y2, x3, y3, x4, y4);
-        boolean leftIntersects =   linesIntersect(x1, y1, x1, y2, x3, y3, x4, y4);
-    
-        // Return true if any intersection occurs
-        return topIntersects || rightIntersects || bottomIntersects || leftIntersects;
-        }
-    
-    boolean linesIntersect(float x1, float y1, float x2, float y2, float x3, float y3, float x4, float y4) {
-      float uA = ((x4-x3)*(y1-y3) - (y4-y3)*(x1-x3)) / ((y4-y3)*(x2-x1) - (x4-x3)*(y2-y1));
-      float uB = ((x2-x1)*(y1-y3) - (y2-y1)*(x1-x3)) / ((y4-y3)*(x2-x1) - (x4-x3)*(y2-y1));
+            float yleft = getYValue(x3,y3,x4,y4, x1);
+            
+            float yright = getYValue(x3,y3,x4,y4, x2);
+            
+            
 
-      return (uA >= 0 && uA <= 1 && uB >= 0 && uB <= 1);
+      }
+
+float getYValue(float x1, float y1, float x2, float y2, float xval) {
+    // Check if the line is vertical
+    if (x1 == x2) {
+        return y1; // Return y1 if the line is vertical (infinite slope)
+    } else {
+        // Calculate slope (m) and y-intercept (c) of the line
+        float m = (y2 - y1) / (x2 - x1);
+        float c = y1 - m * x1;
+        
+        // Calculate y value at given x value
+        return m * xval + c;
     }
+}
+
+
 
 
 }
