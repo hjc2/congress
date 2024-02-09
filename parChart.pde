@@ -140,6 +140,11 @@ public class ParChart {
     
     lines();
     
+       if(dragging == -1 && scaling == -1){
+        important();
+
+   }
+   
     for (DragRect rect : rects) {
        
       rect.display();
@@ -151,10 +156,7 @@ public class ParChart {
    drawCon();
    //drawTrash();
    
-   if(dragging == -1 && scaling == -1){
-        important();
 
-   }
     
   }
   
@@ -425,7 +427,7 @@ public class ParChart {
     }
     
     
-  println(best);
+  //println(best);
   if(best < 15){
     
     //TableRow row = bestRow;
@@ -445,9 +447,12 @@ public class ParChart {
      
         String name = row.getString("last_name");
         String state = row.getString("state");
+        String party = row.getString("party");
 
-        strokeWeight(4);
-        stroke(255,20,255);
+        strokeWeight(10);
+        stroke(255,255,255);
+        //stroke(150,20,150);
+        
         int i = 0;
         line(xPad + i * chartWidth / 3, voteMap,  xPad + (i+1) * chartWidth / 3, predMap);
         i++;
@@ -455,8 +460,32 @@ public class ParChart {
         i++;
         line(xPad + i * chartWidth / 3, agreeMap, xPad + (i+1) * chartWidth / 3, netMap);
         
-     textSize(15);
-     text(name + ", " + state, 100, 700);
+
+     
+        i = 0;
+        
+        strokeWeight(5);
+       //choosePartyStroke(party);
+       
+       stroke(255,20,255);
+
+
+        line(xPad + i * chartWidth / 3, voteMap,  xPad + (i+1) * chartWidth / 3, predMap);
+        i++;
+        line(xPad + i * chartWidth / 3, predMap, xPad + (i+1) * chartWidth / 3, agreeMap);
+        i++;
+        line(xPad + i * chartWidth / 3, agreeMap, xPad + (i+1) * chartWidth / 3, netMap);
+        
+        i = 0;
+                //stroke(0,0,0, 60);
+        line(xPad + i * chartWidth / 3, voteMap,  xPad + (i+1) * chartWidth / 3, predMap);
+        i++;
+        line(xPad + i * chartWidth / 3, predMap, xPad + (i+1) * chartWidth / 3, agreeMap);
+        i++;
+        line(xPad + i * chartWidth / 3, agreeMap, xPad + (i+1) * chartWidth / 3, netMap);
+        
+       textSize(20);
+     text("Senator " + name + ", " + state, 190, 640);
   }
 }
 
