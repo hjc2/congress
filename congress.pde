@@ -13,6 +13,9 @@ Table youngRep; // 4
 Table oldRep; // 5
 Table oldDems; // 6
 
+Table oldFair;
+Table youngFair;
+
 Table flip;
 
 BarChart bars;
@@ -44,6 +47,12 @@ void setup(){
 
   oldTable.sort("agree_pct");
   youngTable.sort("agree_pct");
+  
+  oldFair = filterTableByCongress(table, 115);
+  youngFair = filterTableByCongress(table, 116);
+  
+  oldFair.sort("last_name");
+  youngFair.sort("last_name");
 
   youngDems = filterTableByParty(youngTable, "D");
   youngRep = filterTableByParty(youngTable, "R");
@@ -64,6 +73,9 @@ void setup(){
   
   byear = 115;
   pyear = 115;
+  
+  
+  pars.newRect();
  
 }
 
@@ -97,13 +109,13 @@ void parBeat(){
    if(pButton() != 0){
      
      if(pButton() == 1){
-          ParChart lars = new ParChart(oldTable);
+          ParChart lars = new ParChart(oldFair);
           lars.rects = pars.rects;
           
           pars = lars;
      }
      if(pButton() == 2){
-          ParChart lars = new ParChart(youngTable);
+          ParChart lars = new ParChart(youngFair);
           lars.rects = pars.rects;
           
           pars = lars;       
@@ -113,23 +125,4 @@ void parBeat(){
      
   pars.update();
   pars.draw();
-  
-  
-  stroke(0);
-  fill(0);
-
-  circle(50, height - 50, 15);
-}
-
-void mouseClicked() {
-  //flip = (flip == oldTable) ? youngTable : oldTable;
-  //pars = new ParChart(flip);
-  
-  if(dist(mouseX,mouseY,50, height - 50) < 15){
-  
-    //pars.ne
-    
-    pars.newRect();
-  
-  }
 }

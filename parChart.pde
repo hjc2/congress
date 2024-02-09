@@ -22,6 +22,9 @@ public class ParChart {
   
   int scaling = -1;
   
+  float distance = 100;
+  float lin = -1;
+  
   public ParChart(Table t){
     
     xPad = 140;
@@ -56,7 +59,34 @@ public class ParChart {
      
      handleMove();
      
+     if(rects.get(rects.size() - 1).x1 != 50){
+       
+       newRect();
+       
+     }//, 440, 500, 500
+     //50, 440, 110, 500)
+     
      //trashCan();
+     
+     int label = -1;
+     
+     for(int i = 0; i < rects.size(); i++){
+       
+       //if(rects.get(i).x1 > width - xPad + 40 || rects.get(i).x2 < 40 || rects.get(i).y1 > height - yPad + 20 || rects.get(i).y2 < 20){
+       
+      if(rects.get(i).x2 > width - 40 || rects.get(i).x1 < 20 || rects.get(i).y1 > height - yPad + 20 || rects.get(i).y1 < 20){
+
+         label = i;
+       }
+       
+     }
+     
+     if(label != -1){
+       
+       rects.remove(label);
+       dragging = -1;
+       scaling = -1;
+     }
 
    }
    
@@ -125,7 +155,7 @@ public class ParChart {
   
   public void newRect(){
     
-   rects.add(new DragRect(440, 440, 500, 500)); // Create a DragRect object
+   rects.add(new DragRect(50, 440, 110, 500)); // Create a DragRect object
     
   }
   
@@ -234,7 +264,6 @@ public class ParChart {
      
      
      if(flag){
-      
       if(onOff){
         choosePartyStroke(party);
         strokeWeight(3);
@@ -244,7 +273,12 @@ public class ParChart {
         line(xPad + i * chartWidth / 3, predMap, xPad + (i+1) * chartWidth / 3, agreeMap);
         i++;
         line(xPad + i * chartWidth / 3, agreeMap, xPad + (i+1) * chartWidth / 3, netMap);
+        
+        // count these
+        
+        
       }
+      
      }  else {
        
        if(!onOff){

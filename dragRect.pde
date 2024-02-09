@@ -52,9 +52,6 @@ public class DragRect {
         // checking for tolerance 
         int choice = edgeTolerance();
         
-        println(choice);
-        println(mouseX);
-        println(x2);
         // checking if there was a previous edge
         if(wasEdge != 0){
           choice = wasEdge;
