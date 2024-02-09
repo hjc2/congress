@@ -10,8 +10,8 @@ public class Pulse {
   
   
   public Pulse(int x, int y){
-    prevState = 1;
-    state = 1;
+    prevState = 2;
+    state = 2;
     this.x = x;
     this.y = y;
     

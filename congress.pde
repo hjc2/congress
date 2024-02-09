@@ -77,6 +77,7 @@ void setup(){
   
   pars.newRect();
  
+ println(distancePointToLine(0,0, 10,10,10,20));
 }
 
 

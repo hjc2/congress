@@ -150,6 +150,11 @@ public class ParChart {
    title();
    drawCon();
    //drawTrash();
+   
+   if(dragging == -1 && scaling == -1){
+        important();
+
+   }
     
   }
   
@@ -294,53 +299,6 @@ public class ParChart {
      }
   }
   
-  void trashCan(){
-    
-    //void deleteRectanglesInBox(ArrayList<DragRect> rects, float boxX, float boxY, float boxWidth, float boxHeight) {
-      float boxX = 800;
-      float boxY = 680;
-      float boxWidth = 100;
-      float boxHeight = 100;
-      //Iterator<DragRect> iterator = rects.iterator();
-      //while (iterator.hasNext()) {
-      //DragRect rect = iterator.next(); // Get the next rectangle
-
-      //if (rect.x1 >= boxX && rect.x2 <= boxX + boxWidth && rect.y1 >= boxY && rect.y2 <= boxY + boxHeight) {
-      //  iterator.remove(); // Remove the rectangle from the ArrayList
-      //}
-      
-      int toR = -1;
-      
-      for(int i = 0; i < rects.size(); i++){
-          
-        //DragRect rec = rects.get(i);
-        if (rects.get(i).x1 >= boxX && rects.get(i).x2 <= boxX + boxWidth && rects.get(i).y1 >= boxY && rects.get(i).y2 <= boxY + boxHeight) {
-          
-          toR = i;
-          
-        }
-      }
-      
-      if(toR != -1){
-        
-        newRect();
-        
-        rects.remove(toR);
-      }
-        
-  }
-  
-  void drawTrash(){
-    
-    stroke(200,40,40);
-    strokeWeight(3);
-    noFill();
-    rectMode(CORNERS);
-    rect(800,680,900,780);
-    
-    textSize(30);
-    text("TRASH", 810, 740);
-  }
   
     void legend(){
     
@@ -403,9 +361,107 @@ public class ParChart {
     text("116", 130, height - 45);
 
   }
+  
+  
+  void important(){
+  
+  float best = 10000;
+  
+  TableRow bestRow = table.getRow(0);
+  
+  int bestIndex = 0;
+    
+  int k = 0;
+  
+  for (TableRow row : table.rows()) {
+       
+    
+     int votes = int(row.getString("votes"));
+     float voteMap = map(votes, 0, totalVotes, height - yPad, yPad);
+     
+     float pred = float(row.getString("predicted_agree"));
+     float predMap = map(pred, 0, 1.0, height - yPad,yPad);
+     
+     float agree = float(row.getString("agree_pct"));
+     float agreeMap = map(agree, 0, 1.0, height - yPad, yPad);
+
+     float net = float(row.getString("net_trump_vote"));
+     float netMap = map(net, -50.0, 50.0, height - yPad, yPad);
+    
+     String party = row.getString("party");     
+     
+     int i = 0;
+     
+     float a = distancePointToLine(mouseX, mouseY, xPad + i * chartWidth / 3, voteMap,  xPad + (i+1) * chartWidth / 3, predMap);
+     i++;
+     float b = distancePointToLine(mouseX, mouseY, xPad + i * chartWidth / 3, predMap, xPad + (i+1) * chartWidth / 3, agreeMap);
+     i++;
+     float c = distancePointToLine(mouseX, mouseY, xPad + i * chartWidth / 3, agreeMap, xPad + (i+1) * chartWidth / 3, netMap);
+     
+     float minDist = min(a,b,c);
+        //    line(xPad + i * chartWidth / 3, voteMap,  xPad + (i+1) * chartWidth / 3, predMap);
+        //i++;
+        //line(xPad + i * chartWidth / 3, predMap, xPad + (i+1) * chartWidth / 3, agreeMap);
+        //i++;
+        //line(xPad + i * chartWidth / 3, agreeMap, xPad + (i+1) * chartWidth / 3, netMap);
+     
+     boolean flag = false;
+    
+    for (DragRect rect : rects) {
+      flag = flag || (rect.lineInter(xPad, voteMap,  xPad + 1 * chartWidth / 3.0, predMap) || 
+         rect.lineInter(xPad + 1 * chartWidth / 3.0, predMap, xPad + 2 * chartWidth / 3.0, agreeMap) || 
+         rect.lineInter(xPad + 2 * chartWidth / 3.0, agreeMap, xPad + 3 * chartWidth / 3.0, netMap));
+    }
+           
+    if(minDist < best && flag){
+      
+      bestRow = row;
+      best = minDist;
+      bestIndex = k;
+    }
+        
+      //drawLine(row, true);
+      k++;
+    }
+    
+    
+  println(best);
+  if(best < 15){
+    
+    //TableRow row = bestRow;
+    
+    TableRow row = table.getRow(bestIndex);
+       int votes = int(row.getString("votes"));
+     float voteMap = map(votes, 0, totalVotes, height - yPad, yPad);
+     
+     float pred = float(row.getString("predicted_agree"));
+     float predMap = map(pred, 0, 1.0, height - yPad,yPad);
+     
+     float agree = float(row.getString("agree_pct"));
+     float agreeMap = map(agree, 0, 1.0, height - yPad, yPad);
+    
+     float net = float(row.getString("net_trump_vote"));
+     float netMap = map(net, -50.0, 50.0, height - yPad, yPad);
+     
+        String name = row.getString("last_name");
+
+        strokeWeight(4);
+        stroke(255,20,255);
+        int i = 0;
+        line(xPad + i * chartWidth / 3, voteMap,  xPad + (i+1) * chartWidth / 3, predMap);
+        i++;
+        line(xPad + i * chartWidth / 3, predMap, xPad + (i+1) * chartWidth / 3, agreeMap);
+        i++;
+        line(xPad + i * chartWidth / 3, agreeMap, xPad + (i+1) * chartWidth / 3, netMap);
+        
+     text(name, 100, 700);
+  }
+}
+
 }
   
   
+
   
 int pButton(){
   if(mousePressed){
