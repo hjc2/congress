@@ -57,6 +57,16 @@ public class Pulse {
     if(state == 2){
         circle(x + 20, y + 58, 25);
     }
+    
+    fill(0);
+    stroke(0);
+    textSize(20);
+    //text("chart", x, y - 10);
+    text("chart", x, y + 105);
+
+    
   }
+  
+  
   
 }
