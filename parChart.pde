@@ -168,7 +168,7 @@ public class ParChart {
   
   private void grid(){
     
-      String[] titles  = {"total votes", "predicted", "agree_pct", "trump %"};
+      String[] titles  = {"total votes", "predicted", "agree_pct", "trump state win %"};
 
       stroke(0);
       fill(0);
@@ -179,7 +179,6 @@ public class ParChart {
         int tmpX = xPad + i * chartWidth / 3;
         
         textSize(30);
-        text(titles[i], tmpX - 40, yPad - 30);
         
         line(tmpX, yPad, tmpX, height - yPad);
 
@@ -219,6 +218,26 @@ public class ParChart {
         
         }
       }
+      
+      //  for(int i = 0; i < titles.length; i++) {
+          
+      //    textSize(15);
+      //            int tmpX = xPad + i * chartWidth / 3;
+
+      //    text(titles[i], tmpX - 40, yPad - 30);
+
+      //  }
+        
+        textSize(20);
+        
+        text("Votes Cast", 120, yPad - 30);
+        
+        text("Predicted Agreement %", 360, yPad - 30);
+            
+        text("Agreement %", 680, yPad - 30);
+        
+        text("Margin of Victory for Trump, 2016", 840, yPad - 30); 
+
     
   }
   
