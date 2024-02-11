@@ -236,7 +236,7 @@ public class ParChart {
             
         text("Agreement %", 680, yPad - 30);
         
-        text("Margin of Victory for Trump, 2016", 840, yPad - 30); 
+        text("Margin of Victory for Trump, 2016", 850, yPad - 30); 
 
     
   }
